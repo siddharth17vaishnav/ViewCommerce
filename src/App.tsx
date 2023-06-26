@@ -1,14 +1,15 @@
-import { Routes, Route } from 'react-router-dom'
-import Home from './sections/Home'
-
+import Navbar from "./Components/Navbar";
+import { Box } from "@mui/material";
+import Hero from "./Components/Hero";
+import SubNavbar from "./Components/SubNavbar";
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </>
-  )
+    <Box sx={{ background: "#f8f8f8", height: "100vh" }}>
+      <Navbar />
+      <SubNavbar />
+      <Hero />
+    </Box>
+  );
 }
 
-export default App
+export default App;
