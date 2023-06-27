@@ -1,91 +1,83 @@
 import React from "react";
-import "./Footer.css";
-import {  FaInstagram, FaLinkedin } from "react-icons/fa"; 
-import {HiOutlineMail} from "react-icons/hi";
+import { Grid, Container, Typography } from "@material-ui/core";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  mainFooter: {
+    backgroundColor: theme.palette.grey[200],
+    marginTop: "calc(10% + 60px)",
+    width: '100%',
+    position: 'fixed',
+    bottom: 0,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+  },
+ 
+}));
 
 function Footer() {
+  const classes = useStyles();
+
   return (
-    <div className="main-footer">
-      <div className="container">
-        <div className="row">
-         
-          <div className="col">
-            <h2>E-commerce</h2>
-            <h3 className="list-unstyled">
-              <div className="row">
-                            <a
-                       href="https://Linkedin.com/"
-                       className="flex justify-between items-center w-full 
-                         text-white"
-                         >
-           <>
-           <FaLinkedin size={30} />
-           </>
-                       </a>
-                           <a
-                       href="https://github.com/"
-                       className="flex justify-between items-center w-full 
-                         text-white"
-                         >
-           <>
-           <FaInstagram size={30} />
-           </>
-            
-           </a>            
-                        <a
-                       href='mailto:ashu.chauhan018@gmail.com'
-                       className="flex justify-between items-center w-full 
-                         text-white"
-                         >
-           <>
-          <HiOutlineMail size={30} />
-           </>
-                       </a>
-                           </div>
-            </h3>
-                      </div>
-                  <div className="col">
-            <h4>Connect with Us</h4>
-            <ui className="list-unstyled">
+    <div className={classes.mainFooter}>
+      <Container maxWidth="lg">
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="h4">E-commerce</Typography>
+            <div className={classes.socialIcons}>
+              <a href="https://Linkedin.com/">
+                <FaLinkedin size={30} />
+              </a>
+              <a href="https://www.instagram.com/">
+                <FaInstagram size={30} />
+              </a>
+              <a href="mailto:ashu.chauhan018@gmail.com">
+                <HiOutlineMail size={30} />
+              </a>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <Typography variant="h7">Connect with Us</Typography>
+            <ul className={classes.list}>
               <li>Facebook</li>
-              <li> Donate</li>
+              <li>Donate</li>
               <li>Instagram</li>
-            </ui>
-          </div>
-          
-          <div className="col">
-            <h4>Get to Know Us</h4>
-            <ui className="list-unstyled">
+            </ul>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <Typography variant="h7">Get to Know Us</Typography>
+            <ul className={classes.list}>
               <li>About Us</li>
               <li>Press Releases</li>
               <li>Our Business</li>
-            </ui>
-          </div>
-          <div className="col">
-            <h4>Let Us Help You</h4>
-            <ui className="list-unstyled">
+            </ul>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
+            <Typography variant="h7">Let Us Help You</Typography>
+            <ul className={classes.list}>
               <li>Help Center</li>
               <li>Trust and safety</li>
               <li>Privacy settings</li>
-            </ui>
-          </div>
-          <div className="col">
-            <h4>Make Money with Us</h4>
-            <ui className="list-unstyled">
+            </ul>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="h7">Make Money with Us</Typography>
+            <ul className={classes.list}>
               <li>Sell on our site</li>
               <li>Sell under our site Accelerator</li>
               <li>Protect and Build Your Brand</li>
-            </ui>
-          </div>
-        </div>
+            </ul>
+          </Grid>
+        </Grid>
         <hr />
-        <div className="row">
-          <p className="col-sm">
-            &copy;{new Date().getFullYear()} © 2022 Commerce, Inc. | Privacy policy |
-            Terms Of Service | Cookies | 
-          </p>
+        <div className={classes.footerText}>
+          <Typography variant="body2">
+            &copy;{new Date().getFullYear()} Commerce, Inc. | Privacy policy | Terms Of Service | Cookies
+          </Typography>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }
