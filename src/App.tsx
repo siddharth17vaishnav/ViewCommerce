@@ -6,11 +6,17 @@ import Card from './components/Card/Card'
 function App() {
   return (
     <>
+
+
+
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
      <Card />
       <Footer/>
+
+
+      
     </>
   )
 }
