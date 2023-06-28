@@ -11,6 +11,7 @@
     "tsc": "bash -c tsc --noEmit",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint:staged": "eslint"
+    
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
