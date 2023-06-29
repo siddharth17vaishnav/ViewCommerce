@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     position: 'fixed',
     bottom: 0,
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(4),
   },
  
 }));
@@ -22,7 +22,7 @@ function Footer() {
 
   return (
     <div className={classes.mainFooter}>
-      <Container maxWidth="lg">
+      <Container maxWidth="full">
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
             <Typography variant="h4">E-commerce</Typography>
