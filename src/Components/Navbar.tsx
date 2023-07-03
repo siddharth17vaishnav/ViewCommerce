@@ -1,20 +1,10 @@
 import Typography from '@mui/material/Typography'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import SearchIcon from '@mui/icons-material/Search'
-import Button from '@mui/material/Button'
-
-import myList from './NavbarList'
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  createTheme,
-  ThemeProvider
-} from '@mui/material'
+import { Box, createTheme, ThemeProvider } from '@mui/material'
+import { useMediaQuery } from '@mui/material'
+import CustomizedMenus from './CustomizedMenus'
+import TemporaryDrawer from './TemporaryDrawer'
 
 const Navbar = () => {
   const theme = createTheme({
@@ -22,15 +12,7 @@ const Navbar = () => {
       fontFamily: 'Inter, Arial, sans-serif'
     }
   })
-
-  let navItem = myList.Li.map(item => {
-    return (
-      <ListItemButton key={item}>
-        <ListItemText primary={item} />
-        <ExpandMoreIcon />
-      </ListItemButton>
-    )
-  })
+  const isLargeScreen = useMediaQuery('(min-width:1200px)')
   return (
     <ThemeProvider theme={theme}>
       <Box>
@@ -38,7 +20,6 @@ const Navbar = () => {
           <Toolbar
             sx={{
               display: 'flex',
-              // justifyContent: 'space-evenly',
               alignItems: 'center'
             }}>
             <Typography
@@ -47,15 +28,8 @@ const Navbar = () => {
               sx={{ fontSize: '44px', color: '#000', fontWeight: 700 }}>
               LOGO
             </Typography>
-            <List
-              sx={{
-                color: '#000000',
-                ml: 5
-              }}>
-              <ListItem disablePadding>{navItem}</ListItem>
-            </List>
-            <Button sx={{ background: '#C1C1C1', color: '#fff', ml: 'auto' }}>Login</Button>
-            <SearchIcon sx={{ color: '#000000', cursor: 'pointer', ml: 'auto' }} />
+            {isLargeScreen && <CustomizedMenus />}
+            {!isLargeScreen && <TemporaryDrawer />}
           </Toolbar>
         </AppBar>
       </Box>

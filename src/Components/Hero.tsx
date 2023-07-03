@@ -16,7 +16,6 @@ const Hero = () => {
             backgroundImage: `url(${banner})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            width: '95%',
             height: '100%'
           }}>
           <Box

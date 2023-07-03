@@ -11,12 +11,8 @@ import {
 import MenuIcon from '@mui/icons-material/Menu'
 import Typography from '@mui/material/Typography'
 import myList from './NavbarList'
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
 import BottomNavigation from '@mui/material/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
-
-console.log(myList.x)
 
 const SubNavbar = () => {
   const theme = createTheme({
@@ -25,7 +21,7 @@ const SubNavbar = () => {
     }
   })
 
-  let navItem = myList.x.map(item => {
+  let navItem = myList.topOptions.map(item => {
     return (
       <ListItemButton key={item} sx={{ fontSize: '16px', fontWeight: 500 }}>
         <ListItemText primary={item} />
@@ -33,7 +29,7 @@ const SubNavbar = () => {
     )
   })
 
-  let navigation = myList.y.map((item, ind) => {
+  let navigation = myList.sideMenuItems.map((item, ind) => {
     const { icon: IconComponent, text } = item
     return <BottomNavigationAction key={ind} label={text} icon={<IconComponent />} />
   })
@@ -48,7 +44,6 @@ const SubNavbar = () => {
           pl: 5,
           pr: 3
         }}>
-        {/* <Container sx={{ display: 'flex', alignItems: 'center' }}> */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <MenuIcon />
           <Typography
@@ -69,18 +64,9 @@ const SubNavbar = () => {
               fontSize: '9.36px',
               ml: 'auto'
             }}>
-            <BottomNavigation
-              showLabels
-              // value={value}
-              // onChange={(event, newValue) => {
-              //   setValue(newValue);
-              // }}
-            >
-              {navigation}
-            </BottomNavigation>
+            <BottomNavigation showLabels>{navigation}</BottomNavigation>
           </Box>
         </Container>
-        {/* </Container> */}
       </Box>
     </ThemeProvider>
   )
