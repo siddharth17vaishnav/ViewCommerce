@@ -1,18 +1,10 @@
-import {
-  Box,
-  Container,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  createTheme,
-  ThemeProvider
-} from '@mui/material'
+import { Box, Container, createTheme, ThemeProvider } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import Typography from '@mui/material/Typography'
-import myList from './NavbarList'
-import BottomNavigation from '@mui/material/BottomNavigation'
-import BottomNavigationAction from '@mui/material/BottomNavigationAction'
+import SideMenu from './Lists/SideMenu'
+import TopOptions from './Lists/TopOptions'
+import { useMediaQuery } from '@mui/material'
+import SecondaryDrawer from './Drawers/SecondaryDrawer'
 
 const SubNavbar = () => {
   const theme = createTheme({
@@ -20,19 +12,8 @@ const SubNavbar = () => {
       fontFamily: 'Inter, Arial, sans-serif'
     }
   })
+  const isLargeScreen = useMediaQuery('(min-width:1200px)')
 
-  let navItem = myList.topOptions.map(item => {
-    return (
-      <ListItemButton key={item} sx={{ fontSize: '16px', fontWeight: 500 }}>
-        <ListItemText primary={item} />
-      </ListItemButton>
-    )
-  })
-
-  let navigation = myList.sideMenuItems.map((item, ind) => {
-    const { icon: IconComponent, text } = item
-    return <BottomNavigationAction key={ind} label={text} icon={<IconComponent />} />
-  })
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -41,11 +22,12 @@ const SubNavbar = () => {
           height: '61px',
           display: 'flex',
           alignItems: 'center',
-          pl: 5,
-          pr: 3
+          pl: 5
         }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <MenuIcon />
+          {isLargeScreen && <MenuIcon />}
+          {!isLargeScreen && <SecondaryDrawer />}
+
           <Typography
             variant="h5"
             component="p"
@@ -54,18 +36,8 @@ const SubNavbar = () => {
           </Typography>
         </Box>
         <Container sx={{ display: 'flex' }}>
-          <List sx={{ color: '#000000' }}>
-            <ListItem disablePadding>{navItem}</ListItem>
-          </List>
-          <Box
-            sx={{
-              width: 280,
-              color: '#8B96A5',
-              fontSize: '9.36px',
-              ml: 'auto'
-            }}>
-            <BottomNavigation showLabels>{navigation}</BottomNavigation>
-          </Box>
+          {isLargeScreen && <TopOptions />}
+          {isLargeScreen && <SideMenu />}
         </Container>
       </Box>
     </ThemeProvider>

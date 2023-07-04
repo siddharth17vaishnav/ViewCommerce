@@ -1,18 +1,27 @@
-import { Box, Button, Container, ThemeProvider, Typography, createTheme } from '@mui/material'
+import { Box, Button, ThemeProvider, Typography, createTheme } from '@mui/material'
 import banner from '../assets/Banner.png'
+import { useMediaQuery } from '@mui/material'
+
 const Hero = () => {
   const theme = createTheme({
     typography: {
       fontFamily: 'Inter, Arial, sans-serif'
     }
   })
+  const isLargeScreen = useMediaQuery('(min-width:1200px)')
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ mt: '55px', position: 'relative', width: '100% ', height: '602px', px: 5 }}>
+      <Box
+        sx={{
+          mt: '55px',
+          position: 'relative',
+          width: '100% ',
+          height: '602px',
+          px: isLargeScreen ? 5 : 0
+        }}>
         <Box
           sx={{
-            //   position: "absolute",
             backgroundImage: `url(${banner})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -22,8 +31,8 @@ const Hero = () => {
             sx={{
               position: 'absolute',
               color: '#1C1C1C',
-              left: '135px',
-              top: '195px'
+              left: '10%',
+              top: '30%'
             }}>
             <Typography
               variant="h1"

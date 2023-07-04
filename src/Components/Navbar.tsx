@@ -3,8 +3,8 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import { Box, createTheme, ThemeProvider } from '@mui/material'
 import { useMediaQuery } from '@mui/material'
-import CustomizedMenus from './CustomizedMenus'
-import TemporaryDrawer from './TemporaryDrawer'
+import CustomizedMenus from './Lists/CustomizedMenus'
+import PrimaryDrawer from './Drawers/PrimaryDrawer'
 
 const Navbar = () => {
   const theme = createTheme({
@@ -29,7 +29,7 @@ const Navbar = () => {
               LOGO
             </Typography>
             {isLargeScreen && <CustomizedMenus />}
-            {!isLargeScreen && <TemporaryDrawer />}
+            {!isLargeScreen && <PrimaryDrawer />}
           </Toolbar>
         </AppBar>
       </Box>
