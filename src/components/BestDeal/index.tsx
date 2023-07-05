@@ -1,5 +1,4 @@
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
@@ -9,9 +8,9 @@ import { CardHeader, Grid, IconButton } from '@mui/material';
 
 const MediaCard=({item})=> {
   return (
-    <Grid item xs={2} sm={4} md={4}>
+    <Grid item>
       <Card sx={{
-        backgroundColor: `${item.bgColor}`, // Set your desired background color here
+        backgroundColor: `${item.bgColor}`,
       }}>
         <CardHeader
         action={
@@ -24,13 +23,6 @@ const MediaCard=({item})=> {
           </IconButton>
         }
         />
-      {/* <CardMedia
-        component="img"
-        height="200"
-        width="200"
-        image={item.image}
-        alt="Chevrolet"
-      /> */}
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" >
           <img src={item.image} />
