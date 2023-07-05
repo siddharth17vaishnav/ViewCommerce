@@ -4,8 +4,9 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { useMediaQuery } from '@mui/material'
 import Divider from '@mui/material/Divider'
 import SideMenu from '../Lists/SideMenu'
-import Login from '../Buttons/Login'
 import CustomizedAccordions from '../CustomizedAccordions'
+import SearchInput from '../SearchField/SearchInput'
+import AllButton from '../Buttons/AllButton'
 
 const PrimaryDrawer = () => {
   const [open, setOpen] = useState(false)
@@ -18,15 +19,18 @@ const PrimaryDrawer = () => {
       <Drawer
         open={open}
         onClose={() => setOpen(false)}
-        sx={
-          {
-            // overflowX: 'hidden'
+        sx={{
+          '& .MuiDrawer-paper': {
+            overflowX: 'hidden'
           }
-        }>
+        }}>
         <CustomizedAccordions />
         <Divider sx={{ my: 4 }} />
         <SideMenu />
-        <Login />
+        <Divider sx={{ my: 4 }} />
+        <SearchInput />
+        <Divider sx={{ my: 4 }} />
+        <AllButton text="Login" />
       </Drawer>
       {isLargeScreen && (
         <MenuIcon

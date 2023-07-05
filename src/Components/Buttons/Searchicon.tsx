@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton'
 
 import { useMediaQuery } from '@mui/material'
 
-const Search = () => {
+const Searchicon = () => {
   const isLargeScreen = useMediaQuery('(min-width:1200px)')
 
   return (
@@ -20,4 +20,4 @@ const Search = () => {
     </IconButton>
   )
 }
-export default Search
+export default Searchicon

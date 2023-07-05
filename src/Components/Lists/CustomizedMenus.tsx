@@ -5,9 +5,10 @@ import MenuItem from '@mui/material/MenuItem'
 import { Box, useMediaQuery } from '@mui/material'
 import myList from './NavbarList'
 
-import Login from '../Buttons/Login'
-import Search from '../Buttons/Search'
+import Login from '../Buttons/AllButton'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import Searchicon from '../Buttons/Searchicon'
+import AllButton from '../Buttons/AllButton'
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -69,8 +70,8 @@ export default function BasicMenu() {
             justifyContent: 'space-between',
             alignItems: 'center'
           }}>
-          {isLargeScreen && <Login />}
-          <Search />
+          {isLargeScreen && <AllButton text="Login" />}
+          <Searchicon />
         </Box>
         <Menu
           id="basic-menu"
