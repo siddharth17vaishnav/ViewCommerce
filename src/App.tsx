@@ -6,7 +6,10 @@ function App() {
   return (
     <>
      <div>
-     <h1 className="title">Recommended items</h1>
+     <h1 className="title">
+  <span className="Peach-text">Recommended</span>
+  <span className="gray-text"> items</span>
+</h1>
       <div className="card-list">
         <Card
           image={require('./assets/B.jpg')}
