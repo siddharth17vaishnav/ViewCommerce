@@ -20,7 +20,9 @@ const useStyles = makeStyles(() => ({
     margin: '0 auto',
     maxWidth: '1480px',
     padding: '0 20px',
-    marginTop: '80px'
+    marginTop: '80px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   }
 }))
 
@@ -61,3 +63,8 @@ function App() {
 }
 
 export default App
+
+
+
+
+

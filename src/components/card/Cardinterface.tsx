@@ -11,11 +11,13 @@ const useStyles = makeStyles(() => ({
   card: {
     width: '220px',
     height: '360px',
-    display: 'flex',
+    display: 'space-betweeen',
     flexDirection: 'column',
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#fff',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
     transition: 'box-shadow 0.3s ease-in-out',
     '&:hover': {
@@ -46,7 +48,7 @@ const useStyles = makeStyles(() => ({
     color: 'orange'
   },
   grayText: {
-    color: 'gray' // Updated color value
+    color: 'gray' 
   }
 }))
 

@@ -17,10 +17,15 @@ const useStyles = makeStyles(theme => ({
     bottom: 0,
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(4),
-    paddingLeft: theme.spacing(8)
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: '1480px',
   },
+  
   contentContainer: {
+    width: '100%',
     padding: ` ${theme.spacing(2)}px`
+    
   },
   socialIcons: {
     display: 'flex',
@@ -29,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
   list: {
     listStyle: 'none',
-    padding: 0,
+    padding: '6px',
     margin: 0,
     marginTop: theme.spacing(2),
     '& li': {
@@ -50,9 +55,10 @@ const Footer: React.FC<FooterProps> = () => {
     <div className={classes.mainFooter}>
       <Container maxWidth={false}>
         <div className={classes.contentContainer}>
-          <Grid container spacing={3}>
-            <Grid item xs={6} sm={6} md={3}>
+          <Grid container spacing={6}>
+            <Grid item xs={6} sm={6} md={4}>
               <Typography variant="h4">E-commerce</Typography>
+              
               <div className={classes.socialIcons}>
                 <a href="https://Linkedin.com/">
                   <img src={linkedin} alt="LinkedIn" width={30} height={30} />
@@ -93,7 +99,8 @@ const Footer: React.FC<FooterProps> = () => {
                 <li>Privacy Settings</li>
               </ul>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            
+            <Grid item xs={12} sm={6} md={2}>
               <Typography variant="h6">Make Money with Us</Typography>
               <ul className={classes.list}>
                 <li>Sell on our site</li>
@@ -103,7 +110,7 @@ const Footer: React.FC<FooterProps> = () => {
             </Grid>
           </Grid>
         </div>
-        <hr />
+        <hr></hr>
         <Typography variant="body2" className={classes.footerText}>
           &copy; {new Date().getFullYear()} E-commerce. All rights reserved.
         </Typography>
