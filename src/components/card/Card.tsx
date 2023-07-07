@@ -30,8 +30,8 @@ const useStyles = makeStyles(() => ({
   },
   
   card: {
-    width: 220,
-    height: 360,
+    width: '220px',
+    height: '360px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
