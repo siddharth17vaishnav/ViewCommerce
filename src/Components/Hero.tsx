@@ -41,7 +41,7 @@ const Hero = () => {
             renderSlideContent={content => (
               <Box
                 display="flex"
-                justifyContent="center" // You can customize this based on your requirements
+                justifyContent="center"
                 sx={{
                   width: '100%',
                   height: '494px',

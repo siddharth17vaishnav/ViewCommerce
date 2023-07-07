@@ -4,11 +4,10 @@ import MuiAccordion, { AccordionProps } from '@mui/material/Accordion'
 import MuiAccordionSummary, { AccordionSummaryProps } from '@mui/material/AccordionSummary'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Box } from '@mui/material'
-import React, { useRef } from 'react'
-
 import myList from './Lists/NavbarList'
+import React, { useRef } from 'react'
+import { ListItemButton } from '@mui/material'
+
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -18,8 +17,7 @@ const Accordion = styled((props: AccordionProps) => (
   },
   '&:before': {
     display: 'none'
-  },
-  marginBottom: 7
+  }
 }))
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
@@ -45,7 +43,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }))
 
 export default function CustomizedAccordions() {
-  const [expanded, setExpanded] = React.useState<string | false>('panel1')
+  const [expanded, setExpanded] = React.useState<string | false>('')
   const selectedButtonRef = useRef<string | null>(null)
   const selectedButton = selectedButtonRef.current
 
@@ -55,28 +53,31 @@ export default function CustomizedAccordions() {
   }
 
   return (
-    <Box>
+    <div>
       {myList.menuItems.map((item, ind) => {
         const title = item.title
-
         return (
-          <Accordion expanded={expanded === title} onChange={handleChange(title)} key={ind}>
+          <Accordion
+            expanded={expanded === title}
+            onChange={handleChange(title)}
+            key={`${title}-${ind}`}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={`panel${ind + 1}-content`}
-              id={`panel${ind + 1}-header`}>
-              <Typography>{item.title}</Typography>
+              aria-controls={`${title}-content`}
+              id={`${title}-header`}
+              panel1d-header>
+              <Typography>{title}</Typography>
             </AccordionSummary>
-
-            {title === selectedButton &&
-              item.submenu?.map(submenuItems => (
-                <AccordionDetails key={submenuItems.title}>
-                  <Typography>{submenuItems.title}</Typography>
-                </AccordionDetails>
-              ))}
+            <AccordionDetails>
+              {title === selectedButton &&
+                item.submenu?.map((submenuItems, index) => (
+                  <ListItemButton key={`${submenuItems.title}-${index}`}>
+                    {submenuItems.title}
+                  </ListItemButton>
+                ))}
+            </AccordionDetails>
           </Accordion>
         )
       })}
-    </Box>
+    </div>
   )
 }
