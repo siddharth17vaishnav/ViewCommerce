@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import myList from './Lists/NavbarList'
 import React, { useRef } from 'react'
 import { ListItemButton } from '@mui/material'
+// import Divider from '@mui/material/Divider'
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -27,7 +28,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
   />
 ))(({ theme }) => ({
   backgroundColor:
-    theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, .05)' : 'rgba(0, 0, 0, .03)',
+    theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, .05)' : 'rgba(255, 255, 255,)',
   flexDirection: 'row-reverse',
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
     transform: 'rotate(90deg)'
@@ -64,7 +65,9 @@ export default function CustomizedAccordions() {
             <AccordionSummary
               aria-controls={`${title}-content`}
               id={`${title}-header`}
-              panel1d-header>
+              panel1d-header
+              // sx={{ background: 'red' }}
+            >
               <Typography>{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
