@@ -1,16 +1,15 @@
-
-import { makeStyles } from '@material-ui/core/styles';
-import ash from '../../assets/ash.jpg';
-import D from '../../assets/D.jpg';
-import B from '../../assets/B.jpg';
-import C from '../../assets/C.jpg';
-import E from '../../assets/E.jpg';
-import F from '../../assets/F.jpg';
-import G from '../../assets/G.jpg';
-import H from '../../assets/H.jpg';
-import I from '../../assets/I.jpg';
-import jug from '../../assets/jug.jpg';
-import Cardinterface from './Cardinterface';
+import { makeStyles } from '@material-ui/core/styles'
+import ash from '../../assets/ash.jpg'
+import D from '../../assets/D.jpg'
+import B from '../../assets/B.jpg'
+import C from '../../assets/C.jpg'
+import E from '../../assets/E.jpg'
+import F from '../../assets/F.jpg'
+import G from '../../assets/G.jpg'
+import H from '../../assets/H.jpg'
+import I from '../../assets/I.jpg'
+import jug from '../../assets/jug.jpg'
+import Cardinterface from './Cardinterface'
 
 const useStyles = makeStyles(() => ({
   cardList: {
@@ -21,13 +20,12 @@ const useStyles = makeStyles(() => ({
     margin: '0 auto',
     maxWidth: '1480px',
     padding: '0 20px',
-    marginTop: '80px',
-  },
-  
-}));
+    marginTop: '80px'
+  }
+}))
 
 function App() {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const data = [
     { id: 1, image: ash, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer' },
@@ -39,8 +37,8 @@ function App() {
     { id: 7, image: F, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer' },
     { id: 8, image: H, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer' },
     { id: 9, image: I, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer' },
-    { id: 10, image: jug, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer' },
-  ];
+    { id: 10, image: jug, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer' }
+  ]
 
   return (
     <div>
@@ -49,8 +47,8 @@ function App() {
         <span className="grayText"> items</span>
       </h1>
       <div className={classes.cardList}>
-        {data.map((item) => (
-          <Cardinterface 
+        {data.map(item => (
+          <Cardinterface
             key={item.id}
             image={item.image}
             price={item.price}
@@ -59,7 +57,7 @@ function App() {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

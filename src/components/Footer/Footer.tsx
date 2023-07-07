@@ -1,78 +1,73 @@
-import React from "react";
-import { Grid, Container, Typography } from "@material-ui/core";
+import React from 'react'
+import { Grid, Container, Typography } from '@material-ui/core'
 
-import { makeStyles } from "@material-ui/core/styles";
-import dribble from '../../assets/dribbble.png';
-import facebook from '../../assets/facebook.png';
-import linkedin from '../../assets/linkedin.png';
-import twitter from '../../assets/twitter.png';
+import { makeStyles } from '@material-ui/core/styles'
+import dribble from '../../assets/dribbble.png'
+import facebook from '../../assets/facebook.png'
+import linkedin from '../../assets/linkedin.png'
+import twitter from '../../assets/twitter.png'
 
 interface FooterProps {}
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   mainFooter: {
-    backgroundColor: "#FFFFFF", // White color
-    marginTop: "calc(10% + 60px)",
-    width: "100%",
+    backgroundColor: '#FFFFFF', // White color
+    marginTop: 'calc(10% + 60px)',
+    width: '100%',
     bottom: 0,
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(4),
     paddingLeft: theme.spacing(8)
-   
   },
   contentContainer: {
-    padding: ` ${theme.spacing(2)}px`,
+    padding: ` ${theme.spacing(2)}px`
   },
   socialIcons: {
-    display: "flex",
+    display: 'flex',
     gap: theme.spacing(2),
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(2)
   },
   list: {
-    listStyle: "none",
+    listStyle: 'none',
     padding: 0,
     margin: 0,
     marginTop: theme.spacing(2),
-    "& li": {
+    '& li': {
       marginBottom: theme.spacing(1),
-      cursor: "pointer",
-    },
+      cursor: 'pointer'
+    }
   },
   footerText: {
     marginTop: theme.spacing(2),
-    fontFamily: "Poppins",
-  
-  },
-
- 
-  
-}));
+    fontFamily: 'Poppins'
+  }
+}))
 
 const Footer: React.FC<FooterProps> = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.mainFooter}>
       <Container maxWidth={false}>
         <div className={classes.contentContainer}>
           <Grid container spacing={3}>
-          <Grid item xs={6} sm={6} md={3}>
-  <Typography variant="h4">E-commerce</Typography>
-  <div className={classes.socialIcons}>
-    <a href="https://Linkedin.com/">
-      <img src={linkedin} alt="LinkedIn" width={30} height={30} />
-    </a>
-    <a href="https://www.instagram.com/">
-      <img src={dribble} alt="Dribbble" width={30} height={30} />
-    </a>
-    <a href="mailto:ashu.chauhan018@gmail.com">
-      <img src={twitter} alt="Twitter" width={30} height={30} />
-    </a>
-    <a href="mailto:ashu.chauhan018@gmail.com">
-      <img src={facebook} alt="Facebook" width={30} height={30} />
-    </a>
-  </div>
-</Grid>
+            <Grid item xs={6} sm={6} md={3}>
+              <Typography variant="h4">E-commerce</Typography>
+              <div className={classes.socialIcons}>
+                <a href="https://Linkedin.com/">
+                  <img src={linkedin} alt="LinkedIn" width={30} height={30} />
+                </a>
+                <a href="https://www.instagram.com/">
+                  <img src={dribble} alt="Dribbble" width={30} height={30} />
+                </a>
+                <a href="mailto:ashu.chauhan018@gmail.com">
+                  <img src={twitter} alt="Twitter" width={30} height={30} />
+                </a>
+                <a href="mailto:ashu.chauhan018@gmail.com">
+                  <img src={facebook} alt="Facebook" width={30} height={30} />
+                </a>
+              </div>
+            </Grid>
 
             <Grid item xs={12} sm={6} md={2}>
               <Typography variant="h6">Connect with Us</Typography>
@@ -114,7 +109,7 @@ const Footer: React.FC<FooterProps> = () => {
         </Typography>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

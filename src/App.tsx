@@ -1,16 +1,13 @@
-
-
-import Card from './components/card/Card';
-import Footer from './components/Footer/Footer';
-
+import Card from './components/card/Card'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
     <div>
-     <Card  />
+      <Card />
       <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
