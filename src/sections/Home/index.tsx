@@ -1,6 +1,11 @@
-import { Box } from '@mui/material'
+
+import Card from '../../components/card/Card'
+import Footer from '../../components/Footer/Footer'
 const Home = () => {
-  return <Box>HELLO THERE TESTED SUCCESSFULLY BY SAURABH</Box>
+  return <div>
+   <Card />
+ <Footer />
+</div>
 }
 
 export default Home
