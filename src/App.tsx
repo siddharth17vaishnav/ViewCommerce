@@ -2,6 +2,7 @@ import Navbar from './Components/Navbar'
 import { Box } from '@mui/material'
 import Hero from './Components/Hero'
 import SubNavbar from './Components/SubNavbar'
+import Cards from './Components/Cards/Cards'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Navbar />
       <SubNavbar />
       <Hero />
+      <Cards />
     </Box>
   )
 }

@@ -22,7 +22,7 @@ const SubNavbar = () => {
           height: '61px',
           display: 'flex',
           alignItems: 'center',
-          pl: 5
+          pl: 4
         }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           {isLargeScreen && <MenuIcon />}

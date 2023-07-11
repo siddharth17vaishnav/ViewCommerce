@@ -1,5 +1,5 @@
 import { Box, ThemeProvider, Typography, createTheme } from '@mui/material'
-import banner from '../assets/Banner.png'
+import banner from '../assets/images/Banner.png'
 import { useMediaQuery } from '@mui/material'
 import Swipe from './Swiper/Swipe'
 import AllButton from './Buttons/AllButton'
@@ -15,7 +15,9 @@ const Hero = () => {
   const swiperContent = [
     { id: 1, image: banner, alt: 'Banner 1' },
     { id: 2, image: banner, alt: 'Banner 2' },
-    { id: 3, image: banner, alt: 'Banner 3' }
+    { id: 3, image: banner, alt: 'Banner 3' },
+    { id: 4, image: banner, alt: 'Banner 4' },
+    { id: 5, image: banner, alt: 'Banner 5' }
   ]
 
   return (
@@ -26,7 +28,7 @@ const Hero = () => {
           position: 'relative',
           width: '100% ',
           height: '602px',
-          px: isLargeScreen ? 5 : 0
+          px: isLargeScreen ? 4 : 0
         }}>
         <Box
         // sx={{

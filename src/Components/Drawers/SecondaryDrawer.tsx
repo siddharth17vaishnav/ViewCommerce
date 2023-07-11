@@ -8,7 +8,6 @@ const SecondaryDrawer = () => {
   const [open, setOpen] = useState(false)
 
   const isLargeScreen = useMediaQuery('(max-width:1200px)')
-  console.log(isLargeScreen)
 
   return (
     <>
