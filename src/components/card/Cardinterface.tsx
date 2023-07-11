@@ -47,6 +47,7 @@ const useStyles = makeStyles(() => ({
     padding: 10,
   },
   buyButton: {
+    textDecoration: 'none',
     marginTop: 10,
     padding: '8px 16px',
     background: 'orange',

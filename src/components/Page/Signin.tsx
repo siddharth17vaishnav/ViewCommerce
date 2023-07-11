@@ -10,7 +10,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container, useTheme } from "@mui/material";
-import paneImage from "../../assets/plane.jpg";
+import paneImage from "../../assets/plane2.jpg";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 export default function Login() {
@@ -34,7 +34,7 @@ export default function Login() {
           <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
             <Box
               sx={{
-                my: 12,
+                my: 6,
                 mx: 8,
                 display: "flex",
                 flexDirection: "column",
@@ -116,13 +116,13 @@ export default function Login() {
                   <Typography variant="body1">-----------OR-----------</Typography>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: 10, borderRadius: 8 }}>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100px", height: "40px", border: "2px solid grey", borderRadius: 8 }}>
-                        <GoogleIcon fontSize="large" sx={{ color: "#DB4437" }} /><Typography variant="caption">Google</Typography>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100px", height: "40px", border: "3px solid lightgrey", borderRadius: 8 }}>
+                        <GoogleIcon fontSize="medium" sx={{ color: "#DB4437" }} /><Typography variant="caption">Google</Typography>
                       </div>
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", borderRadius: 8 }}>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100px", height: "40px", border: "2px solid grey", borderRadius: 8 }}>
-                        <FacebookIcon fontSize="large" sx={{ color: "#1877F2" }} /><Typography variant="caption">Facebook</Typography>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100px", height: "40px", border: "3px solid lightgrey", borderRadius: 8 }}>
+                        <FacebookIcon fontSize="medium" sx={{ color: "#1877F2" }} /><Typography variant="caption">Facebook</Typography>
                       </div>
                     </div>
                   </div>

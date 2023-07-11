@@ -55,7 +55,7 @@ function App() {
             image={item.image}
             price={item.price}
             details={item.detail}
-            link={item.link || ""}
+            link={item.link}
           />
         ))}
       </div>
