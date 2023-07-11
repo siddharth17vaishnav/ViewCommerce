@@ -11,9 +11,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container, useTheme } from "@mui/material";
 import paneImage from "../../assets/plane.jpg";
-import facebook from '../../assets/Facebook.jpg';
-import Google from '../../assets/Google.jpg';
-
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
 export default function Login() {
   const theme = useTheme();
 
@@ -29,13 +28,13 @@ export default function Login() {
 
   return (
     <Container component="main" maxWidth="lg">
-      <Box sx={{ marginTop: 8 }}>
+      <Box sx={{ marginTop: 4 }}>
         <Grid container>
           <CssBaseline />
           <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
             <Box
               sx={{
-                my: 24,
+                my: 12,
                 mx: 8,
                 display: "flex",
                 flexDirection: "column",
@@ -49,7 +48,7 @@ export default function Login() {
               <Typography component="h1" variant="h5">
                 Sign in
               </Typography>
-              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }} >
                 <TextField
                   margin="normal"
                   required
@@ -59,6 +58,7 @@ export default function Login() {
                   name="email"
                   autoComplete="email"
                   autoFocus
+                  
                 />
                 <TextField
                   margin="normal"
@@ -95,7 +95,7 @@ export default function Login() {
                   </Grid>
                   <Grid item>
                     <Link href="#" variant="body2">
-                      {"Allready have a account? Login"}
+                      {"Already have a account? Login"}
                     </Link>
                   </Grid>
                 </Grid>
@@ -103,33 +103,34 @@ export default function Login() {
               <Box
                 sx={{
                   ml: 1,
-                  marginTop: 8,
-                  padding: 0,
-                  display: "flex",
+                  marginTop: 4,
+                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   color: theme.palette.grey[300],
                   
                 }}
               >
-                <Typography variant="body1" >-----------OR-----------</Typography>
-                <Box
-                  sx={{
-                    mt: 2,
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <a href="www.google.com">
-                    <img src={Google} alt="Google" width={136} height={50} />
-                  </a>
-                  <a href="www.facebook.com">
-                    <img src={facebook} alt="Facebook" width={136} height={50} />
-                  </a>
+              
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", color: theme.palette.grey[500] }}>
+                  <Typography variant="body1">-----------OR-----------</Typography>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: 10, borderRadius: 8 }}>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100px", height: "40px", border: "2px solid grey", borderRadius: 8 }}>
+                        <GoogleIcon fontSize="large" sx={{ color: "#DB4437" }} /><Typography variant="caption">Google</Typography>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", borderRadius: 8 }}>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100px", height: "40px", border: "2px solid grey", borderRadius: 8 }}>
+                        <FacebookIcon fontSize="large" sx={{ color: "#1877F2" }} /><Typography variant="caption">Facebook</Typography>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 </Box>
               </Box>
-            </Box>
+           
           </Grid>
           <Grid
             item
