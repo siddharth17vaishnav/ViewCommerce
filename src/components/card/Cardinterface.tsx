@@ -71,11 +71,11 @@ const useStyles = makeStyles(() => ({
 
 const Cardinterface: React.FC<CardProps> = ({ image, price, details, buttonText, onClick }) => {
   const classes = useStyles();
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    onClick(); 
-    Navigate('/products/jug'); 
+    onClick();
+    navigate('/products/product1');
   };
 
   return (
