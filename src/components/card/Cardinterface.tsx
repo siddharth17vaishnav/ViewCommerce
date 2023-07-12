@@ -1,19 +1,21 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import { useNavigate } from 'react-router-dom';
 
 interface CardProps {
   image: string;
   price: number;
   details: string;
-  link: string;
+  buttonText: string;
+  onClick: () => void;
 }
 
 const useStyles = makeStyles(() => ({
   card: {
     width: '220px',
     height: '405px',
-    display: 'flex', 
+    display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: 20,
@@ -47,7 +49,6 @@ const useStyles = makeStyles(() => ({
     padding: 10,
   },
   buyButton: {
-    textDecoration: 'none',
     marginTop: 10,
     padding: '8px 16px',
     background: 'orange',
@@ -68,8 +69,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Cardinterface: React.FC<CardProps> = ({ image, price, details, link }) => {
+const Cardinterface: React.FC<CardProps> = ({ image, price, details, buttonText, onClick }) => {
   const classes = useStyles();
+  const Navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    onClick(); 
+    Navigate('/products/jug'); 
+  };
 
   return (
     <div className={classes.card}>
@@ -77,9 +84,9 @@ const Cardinterface: React.FC<CardProps> = ({ image, price, details, link }) => 
       <div className={classes.cardDetails}>
         <div className={classes.cardPrice}>{price}</div>
         <div className={classes.cardDescription}>{details}</div>
-        <Link to={link} className={classes.buyButton}>
-          Buy Now
-        </Link>
+        <Button className={classes.buyButton} onClick={handleButtonClick}>
+          {buttonText}
+        </Button>
       </div>
     </div>
   );
