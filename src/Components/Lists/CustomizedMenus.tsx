@@ -83,7 +83,11 @@ export default function BasicMenu() {
             const title = item.title
             if (title === selectedButton) {
               return item.submenu?.map(submenuItems => {
-                return <MenuItem onClick={handleClose}> {submenuItems.title}</MenuItem>
+                return (
+                  <MenuItem key={title} onClick={handleClose}>
+                    {submenuItems.title}
+                  </MenuItem>
+                )
               })
             }
           })}

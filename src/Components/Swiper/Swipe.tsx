@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 // import banner from '../../assets/Banner.png'
 
@@ -14,9 +15,16 @@ import 'swiper/css/navigation'
 import { Autoplay, Pagination } from 'swiper/modules'
 
 interface SwiperContent {
-  id: number
-  image: string
-  alt: string
+  id?: number
+  image?: string
+  alt?: string
+  cardNo?: number
+  color?: string
+  shadow?: string
+  img?: string
+  Ellipse?: string[]
+  text?: string
+  amount?: string
 }
 
 interface SwipeProps {
@@ -27,6 +35,14 @@ interface SwipeProps {
 const Swipe: React.FC<SwipeProps> = ({ swiperContent, renderSlideContent }) => {
   const theme = useTheme()
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'))
+  const [activeIndex, setActiveIndex] = useState(0) // State to store the active index
+
+  const handleSlideChange = (swiper: any) => {
+    setActiveIndex(swiper.activeIndex)
+  }
+  useEffect(() => {
+    console.log(activeIndex)
+  }, [activeIndex])
 
   return (
     <Swiper
@@ -44,6 +60,7 @@ const Swipe: React.FC<SwipeProps> = ({ swiperContent, renderSlideContent }) => {
       }}
       loop={true}
       modules={[Autoplay, Pagination]}
+      onSlideChange={handleSlideChange}
       className="mySwiper">
       {swiperContent.map(content => (
         <SwiperSlide key={content.id}>{renderSlideContent(content)}</SwiperSlide>
