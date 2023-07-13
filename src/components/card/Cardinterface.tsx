@@ -1,14 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface CardProps {
   image: string;
   price: number;
   details: string;
   buttonText: string;
-  onClick: () => void;
+  product: string;
 }
 
 const useStyles = makeStyles(() => ({
@@ -49,6 +48,7 @@ const useStyles = makeStyles(() => ({
     padding: 10,
   },
   buyButton: {
+    textDecoration: 'none',
     marginTop: 10,
     padding: '8px 16px',
     background: 'orange',
@@ -69,14 +69,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Cardinterface: React.FC<CardProps> = ({ image, price, details, buttonText, onClick }) => {
+const Cardinterface: React.FC<CardProps> = ({ image, price, details, buttonText, product }) => {
   const classes = useStyles();
-  const navigate = useNavigate();
-
-  const handleButtonClick = () => {
-    onClick();
-    navigate('/products/product1');
-  };
 
   return (
     <div className={classes.card}>
@@ -84,9 +78,9 @@ const Cardinterface: React.FC<CardProps> = ({ image, price, details, buttonText,
       <div className={classes.cardDetails}>
         <div className={classes.cardPrice}>{price}</div>
         <div className={classes.cardDescription}>{details}</div>
-        <Button className={classes.buyButton} onClick={handleButtonClick}>
+        <Link to={`/products/${product}`} className={classes.buyButton}>
           {buttonText}
-        </Button>
+        </Link>
       </div>
     </div>
   );

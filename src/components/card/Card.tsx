@@ -1,4 +1,3 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ash from '../../assets/ash.jpg';
 import D from '../../assets/D.jpg';
@@ -10,8 +9,7 @@ import G from '../../assets/G.jpg';
 import H from '../../assets/H.jpg';
 import I from '../../assets/I.jpg';
 import jug from '../../assets/jug.jpg';
-import Cardinterface from './Cardinterface';
-import { useNavigate } from 'react-router-dom';
+import CardInterface from '../card/Cardinterface';
 
 const useStyles = makeStyles(() => ({
   cardList: {
@@ -28,25 +26,20 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function Card() {
+const CardList = () => {
   const classes = useStyles();
-  const navigate = useNavigate();
-
-  const handleButtonClick = (product) => {
-    navigate(`/products/${product}`);
-  };
 
   const data = [
-    { id: 1, image: ash, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', onClick: () => handleButtonClick('jugg') },
-    { id: 2, image: B, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', onClick: () => handleButtonClick('jugg') },
-    { id: 3, image: C, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', onClick: () => handleButtonClick('jugg') },
-    { id: 4, image: D, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', onClick: () => handleButtonClick('jugg') },
-    { id: 5, image: E, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', onClick: () => handleButtonClick('jugg') },
-    { id: 6, image: G, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', onClick: () => handleButtonClick('jugg') },
-    { id: 7, image: F, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', onClick: () => handleButtonClick('jugg') },
-    { id: 8, image: H, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', onClick: () => handleButtonClick('jugg') },
-    { id: 9, image: I, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', onClick: () => handleButtonClick('jugg') },
-    { id: 10, image: jug, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', onClick: () => handleButtonClick('jugg') },
+    { id: 1, image: ash, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', product: 'product1' },
+    { id: 2, image: B, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', product: 'product2' },
+    { id: 3, image: C, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', product: 'product3' },
+    { id: 4, image: D, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', product: 'product4' },
+    { id: 5, image: E, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', product: 'product5' },
+    { id: 6, image: G, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', product: 'product6' },
+    { id: 7, image: F, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', product: 'product7' },
+    { id: 8, image: H, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', product: 'product8' },
+    { id: 9, image: I, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', product: 'product9' },
+    { id: 10, image: jug, price: 600, detail: 'Lorem ipsum dolor sit amet, consectetuer', buttonText: 'Buy Now', product: 'product10' },
   ];
 
   return (
@@ -57,18 +50,18 @@ function Card() {
       </h1>
       <div className={classes.cardList}>
         {data.map((item) => (
-          <Cardinterface
+          <CardInterface
             key={item.id}
             image={item.image}
             price={item.price}
             details={item.detail}
             buttonText={item.buttonText}
-            onClick={item.onClick}
+            product={item.product}
           />
         ))}
       </div>
     </div>
   );
-}
+};
 
-export default Card;
+export default CardList;
