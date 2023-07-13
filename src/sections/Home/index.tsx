@@ -8,26 +8,18 @@ import Product1 from '../../components/products/product1';
 
 const Home = () => {
   return (
-    <Router>
+    <>
       <div>
         <Routes>
           <Route path="/products/product1" element={<Product1 />} />
-          <Route path="/" element={<HomeContent />} />
         </Routes>
       </div>
-    </Router>
-  );
-}
-
-const HomeContent = () => {
-  return (
-    <div>
       <ForgotPassword />
       <Login />
       <Signin />
       <CardList />
       <Footer />
-    </div>
+    </>
   );
 }
 
