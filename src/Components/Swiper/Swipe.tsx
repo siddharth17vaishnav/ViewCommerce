@@ -13,36 +13,7 @@ import 'swiper/css/navigation'
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 
-interface SwiperContent {
-  id?: number | string
-  image?: string
-  alt?: string
-  cardNo?: number | string
-  color?: string
-  shadow?: string
-  img?: string
-  Ellipse?: string[]
-  text?: string
-  amount?: string
-  renderSlideContent?: () => JSX.Element
-}
-interface Card {
-  cardNo: number
-  color: string
-  img: string
-  Ellipse: string[]
-  text: string
-  text2: string
-  amount: string
-}
-
-interface SwipeProps {
-  swiperContent?: SwiperContent[]
-  renderSlideContent?: (content: SwiperContent) => JSX.Element | null
-  SwiperGroup?: Card[][]
-  renderCard?: (card: Card) => JSX.Element | null
-  // gridComponent?: JSX.Element
-}
+import { SwipeProps } from '../Types'
 
 const Swipe: React.FC<SwipeProps> = ({
   swiperContent,

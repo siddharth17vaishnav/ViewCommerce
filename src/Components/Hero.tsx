@@ -30,14 +30,7 @@ const Hero = () => {
           height: '602px',
           px: isLargeScreen ? 4 : 0
         }}>
-        <Box
-        // sx={{
-        //   backgroundImage: `url(${banner})`,
-        //   backgroundSize: 'cover',
-        //   backgroundPosition: 'center',
-        //   height: '100%'
-        // }}
-        >
+        <Box>
           <Swipe
             swiperContent={swiperContent}
             renderSlideContent={content => (
