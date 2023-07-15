@@ -169,7 +169,7 @@ const Cards: React.FC<CardsProps> = ({ cards, images }) => {
                 lg={3.9}
                 sx={{
                   '& > :first-child': {
-                    mb: isLargeScreen && !isXLargeScreen ? 0 : '70px',
+                    mb: (isLargeScreen && !isXLargeScreen) || isSmallScreen ? 2 : '70px',
                     mr: isLargeScreen && !isXLargeScreen ? 5 : null
                   },
                   display: isLargeScreen && !isXLargeScreen ? 'flex' : null,
