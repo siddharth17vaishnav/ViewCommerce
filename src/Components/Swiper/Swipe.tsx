@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 // import banner from '../../assets/Banner.png'
 
@@ -12,37 +11,49 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 // import required modules
-import { Autoplay, Pagination } from 'swiper/modules'
+import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 
 interface SwiperContent {
-  id?: number
+  id?: number | string
   image?: string
   alt?: string
-  cardNo?: number
+  cardNo?: number | string
   color?: string
   shadow?: string
   img?: string
   Ellipse?: string[]
   text?: string
   amount?: string
+  renderSlideContent?: () => JSX.Element
+}
+interface Card {
+  cardNo: number
+  color: string
+  img: string
+  Ellipse: string[]
+  text: string
+  text2: string
+  amount: string
 }
 
 interface SwipeProps {
-  swiperContent: SwiperContent[]
-  renderSlideContent: (content: SwiperContent) => JSX.Element
+  swiperContent?: SwiperContent[]
+  renderSlideContent?: (content: SwiperContent) => JSX.Element | null
+  SwiperGroup?: Card[][]
+  renderCard?: (card: Card) => JSX.Element | null
+  // gridComponent?: JSX.Element
 }
 
-const Swipe: React.FC<SwipeProps> = ({ swiperContent, renderSlideContent }) => {
+const Swipe: React.FC<SwipeProps> = ({
+  swiperContent,
+  renderSlideContent,
+  SwiperGroup,
+  renderCard
+}) => {
   const theme = useTheme()
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'))
-  const [activeIndex, setActiveIndex] = useState(0) // State to store the active index
-
-  const handleSlideChange = (swiper: any) => {
-    setActiveIndex(swiper.activeIndex)
-  }
-  useEffect(() => {
-    console.log(activeIndex)
-  }, [activeIndex])
+  // const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
+  // const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
     <Swiper
@@ -52,18 +63,50 @@ const Swipe: React.FC<SwipeProps> = ({ swiperContent, renderSlideContent }) => {
         delay: 3000,
         disableOnInteraction: false
       }}
+      navigation={swiperContent ? false : true}
       pagination={{
-        clickable: false,
-        renderBullet: function (index, className) {
-          return `<span class="${className}" style="background-color: white;"></span>`
-        }
+        // dynamicBullets: swiperContent ? true : false,
+        clickable: true,
+        ...(swiperContent
+          ? {
+              renderBullet: function (index, className) {
+                return `<span class="${className}" style="background-color: white;"></span>`
+              }
+            }
+          : {
+              renderBullet: function (index, className) {
+                return `<span class="${className}" style="background-color: transparent;"></span>`
+              }
+            })
       }}
       loop={true}
-      modules={[Autoplay, Pagination]}
-      onSlideChange={handleSlideChange}
+      modules={[Autoplay, Pagination, Navigation]}
       className="mySwiper">
-      {swiperContent.map(content => (
-        <SwiperSlide key={content.id}>{renderSlideContent(content)}</SwiperSlide>
+      {swiperContent?.map(content => (
+        <SwiperSlide key={content.id}>
+          {renderSlideContent && renderSlideContent(content)}
+        </SwiperSlide>
+      ))}
+      {SwiperGroup?.map((group, groupIndex) => (
+        <SwiperSlide
+          style={{
+            display: 'flex'
+          }}
+          key={groupIndex}>
+          {group.map((card, cardIndex) => {
+            return (
+              <Box
+                sx={{
+                  width: '100%',
+                  mx: cardIndex === 1 && !isMediumScreen ? 3 : 0,
+                  ml: cardIndex === 1 ? 3 : 0
+                }}
+                key={cardIndex}>
+                {renderCard && renderCard(card)}
+              </Box>
+            )
+          })}
+        </SwiperSlide>
       ))}
     </Swiper>
   )

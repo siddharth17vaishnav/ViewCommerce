@@ -41,17 +41,19 @@ const Hero = () => {
           <Swipe
             swiperContent={swiperContent}
             renderSlideContent={content => (
-              <Box
-                display="flex"
-                justifyContent="center"
-                sx={{
-                  width: '100%',
-                  height: '494px',
-                  backgroundImage: `url(${content.image})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center'
-                }}></Box>
+              <Box>
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  sx={{
+                    width: '100%',
+                    height: '494px',
+                    backgroundImage: `url(${content?.image})`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center'
+                  }}></Box>
+              </Box>
             )}
           />
           <Box

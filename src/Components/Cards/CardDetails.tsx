@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react'
-
 import Rectangle1 from '../../assets/images/card1/Rectangle 19.png'
 import Ellipse1 from '../../assets/images/card1/Ellipse 68.png'
 import Ellipse2 from '../../assets/images/card1/Ellipse 71.png'
@@ -185,6 +183,7 @@ let cardSwiper = [
     text2: 'color',
     amount: 195 + ',' + 53
   },
+
   {
     cardNo: 4,
     color: '#FFE4BD',
@@ -217,46 +216,5 @@ let cardSwiper = [
     amount: 43 + ',' + 23
   }
 ]
-interface Card {
-  cardNo: number
-  // shadow: string;
-  color: string
-  img: string
-  Ellipse: Array<string>
-  text: string
-  text2: string
-  amount: string
-}
 
-// const SendThreeCards = () => {
-//   const [newArray, setNewArray] = useState<Array<Card>>([])
-
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       let arr = [...cardSwiper]
-//       console.log(arr)
-//       const nextThree = arr.splice(0, 3)
-//       console.log(nextThree)
-
-//       setNewArray(prevArray => [...prevArray, ...nextThree])
-
-//       // if (arr.length === 0) {
-//       //   console.log('empty')
-//       //   arr = [...cardSwiper]
-//       //   // setNewArray(prevArray => [...prevArray, ...nextThree])
-//       // }
-//       // if (nextThree.length < 3) {
-//       // Reset cardSwiper to contain the original elements
-//       // }
-//       setNewArray(nextThree)
-//     }, 3000)
-
-//     // return () => {
-//     //   clearInterval(interval)
-//     // }
-//   }, [])
-
-//   return newArray
-// }
-
-export default { cards, images, phoneCards }
+export default { cardSwiper, cards, images, phoneCards }

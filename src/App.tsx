@@ -16,7 +16,7 @@ function App() {
       <Hero />
       <Cards cards={CardDetails.cards} images={CardDetails.images} />
       <PhoneCards />
-      {/* <CardSwiper /> */}
+      <CardSwiper />
     </Box>
   )
 }

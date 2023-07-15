@@ -1,17 +1,7 @@
-import {
-  Avatar,
-  Box,
-  Card,
-  IconButton,
-  Typography,
-  useMediaQuery,
-  createTheme,
-  ThemeProvider
-} from '@mui/material'
+import { Box, Card, Typography, useMediaQuery, createTheme, ThemeProvider } from '@mui/material'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
-import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 // import theme from '../../theme/index'
@@ -93,7 +83,7 @@ const PhoneCards = () => {
           {CardDetails.phoneCards.map((items, ind) => {
             const { cardNo, img, text, amount, oldAmount, save, width, height } = items
             return (
-              <Grid xs={12} sm={6} md={4} lg={2.4} key={cardNo}>
+              <Grid xs={12} sm={6} md={4} lg={2.4} key={`${ind}-${cardNo}`}>
                 <Card
                   sx={{
                     height: '368px',
