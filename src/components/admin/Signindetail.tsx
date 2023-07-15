@@ -69,9 +69,12 @@ export default function MyCard() {
               name="Password"
               autoComplete="Password"
             />
-            <Typography variant="body1" sx={{ color: "grey", fontSize: 12 }}>
-              Passwords must be at least 6 characters.
-            </Typography>
+            <Typography
+                  variant="body1"
+                  sx={{ color: "grey", fontSize: 12, textAlign: "right" }}
+                >
+                  Passwords must be at least 6 characters.
+                </Typography>
           </div>
           <div style={{ marginBottom: "20px", width: "100%", maxWidth: "400px" }}>
             <Typography variant="body1" sx={{ color: "grey", fontSize: 18 }}>
