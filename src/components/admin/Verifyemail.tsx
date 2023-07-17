@@ -17,8 +17,6 @@ export default function Login() {
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("email"),
-      password: data.get("password"),
-      
           });
   };
 
@@ -47,20 +45,20 @@ export default function Login() {
               },
             }}
           >
-            <Typography variant="body1" sx={{ paddingBottom:3,textAlign: "center" , color: "gray" }}>
-            Login in to your Business account    
-  </Typography>
             <Typography
               component="h1"
               variant="h5"
-              sx={{ paddingBottom: 2 ,textAlign: "center" }}
+              sx={{ paddingBottom: 2 ,textAlign: "left" }}
               
             >
-             Log-in
+             Verify email address
             </Typography>
-            <Typography variant="body1" sx={{ paddingTop: 1,paddingBottom: 1,textAlign: "center", color: "gray"  }}>
-            Please login using account detail bellow.
-            </Typography>
+            <Typography variant="body1" sx={{ paddingTop: 1,paddingBottom: 1 }}>
+            To verify your email, we've sent a One Time Password (OTP) to Your@email.com
+            </Typography><a href="#">change</a>
+            <Typography variant="body1" sx={{ paddingTop: 2 }}>
+    Enter otp
+  </Typography>
             <Box
               component="form"
               noValidate
@@ -77,16 +75,6 @@ export default function Login() {
                 autoComplete="email"
                 autoFocus
               />
-               <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="Password"
-                label="Password"
-                name="Password"
-                autoComplete="Password"
-                autoFocus
-              />
 
               <Button
                 type="submit"
@@ -94,20 +82,28 @@ export default function Login() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-               Log In
+               Verify  Email-id
               </Button>
               <Grid container>
                 <Grid item xs>
-                  
+                  <p
+                    style={{
+                      fontSize: "14px",
+                      color: "#9e9e9e",
+                      textAlign: "center",
+                    }}
+                  >
+                    By creating an account or logging in, you agree to Amazon’s Conditions of Use and Privacy Policy.{" "}
+                    
+                  </p>
                   <div style={{ display: "flex", justifyContent: "center" }}>
   <a
     href="#"
     style={{ textDecoration: "none" }}
   >
-    Forgot password?
+    Resend otp
   </a>
 </div>
-<p style={{ fontSize: '14px', color: '#9e9e9e', textAlign: 'center', marginTop: '100px' }}>If you are new here, proceed to <a href="#">Sign up</a>.</p>
 
                 </Grid>
               </Grid>

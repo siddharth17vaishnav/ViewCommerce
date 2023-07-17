@@ -20,27 +20,26 @@ export default function Login() {
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("email"),
-      password: data.get("password"),
-      Reapeatpassword: data.get("password"),
+      
     });
   };
 
   return (
     <Container component="main" maxWidth="lg">
-      <Box sx={{ marginTop: 4 }}>
+      <Box sx={{ marginTop: 2 }}>
         <Grid container>
           <CssBaseline />
-          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Grid item xs={6} sm={4} md={5} component={Paper} elevation={6} square>
             <Box
               sx={{
-                my: 12,
-                mx: 8,
+                my: 4,
+                mx: 4,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 [theme.breakpoints.down("sm")]: {
                   mx: 2,
-                  my: 6,
+                  my: 4,
                 },
               }}
             >
@@ -73,7 +72,7 @@ export default function Login() {
               <Box
                 sx={{
                   ml: 1,
-                  marginTop: 4,
+                  marginTop: 2,
                   padding: 0,
                   display: "flex",
                   flexDirection: "column",
@@ -101,7 +100,7 @@ export default function Login() {
           </Grid>
           <Grid
             item
-            xs={12}
+            xs={4}
             sm={4}
             md={7}
             sx={{

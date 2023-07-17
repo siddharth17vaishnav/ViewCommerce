@@ -18,8 +18,8 @@ export default function Login() {
     console.log({
       email: data.get("email"),
       password: data.get("password"),
-      
-          });
+      Reapeatpassword: data.get("password"),
+    });
   };
 
   return (
@@ -40,33 +40,41 @@ export default function Login() {
               mx: 8,
               display: "flex",
               flexDirection: "column",
-              alignItems: "left",
+              alignItems: "center",
               [theme.breakpoints.down("sm")]: {
                 mx: 2,
                 my: 6,
               },
             }}
           >
-            <Typography variant="body1" sx={{ paddingBottom:3,textAlign: "center" , color: "gray" }}>
-            Login in to your Business account    
-  </Typography>
             <Typography
-              component="h1"
-              variant="h5"
-              sx={{ paddingBottom: 2 ,textAlign: "center" }}
-              
-            >
-             Log-in
+            variant="h6"
+              sx={{ paddingBottom: 2 ,textAlign: "center" }}>
+             Fill your Details
             </Typography>
-            <Typography variant="body1" sx={{ paddingTop: 1,paddingBottom: 1,textAlign: "center", color: "gray"  }}>
-            Please login using account detail bellow.
-            </Typography>
+            
             <Box
               component="form"
               noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 0 }}
             >
+            <Typography variant="body1" sx={{ paddingTop: 1 }}>
+              Your Name    
+  </Typography>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="Name"
+                label="Name"
+                name="Name"
+                autoComplete="Name"
+                autoFocus
+              />
+              <Typography variant="body1" sx={{ paddingTop: 1 }}>
+              Email   
+  </Typography>
               <TextField
                 margin="normal"
                 required
@@ -77,14 +85,36 @@ export default function Login() {
                 autoComplete="email"
                 autoFocus
               />
-               <TextField
+               <Typography variant="body1" sx={{ paddingTop: 1 }}>
+              Password   
+  </Typography>
+              <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="Password"
-                label="Password"
+                label="Password "
                 name="Password"
                 autoComplete="Password"
+                autoFocus
+              />
+              <Typography
+                  variant="body1"
+                  sx={{ color: "grey", fontSize: 12, textAlign: "right" }}
+                >
+                  Passwords must be at least 6 characters.
+                </Typography>
+                <Typography variant="body1" sx={{ paddingTop: 1 }}>
+              Password again   
+  </Typography>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="Password again"
+                label="Password again "
+                name="Password again"
+                autoComplete="Password again"
                 autoFocus
               />
 
@@ -94,24 +124,9 @@ export default function Login() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-               Log In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-  <a
-    href="#"
-    style={{ textDecoration: "none" }}
-  >
-    Forgot password?
-  </a>
-</div>
-<p style={{ fontSize: '14px', color: '#9e9e9e', textAlign: 'center', marginTop: '100px' }}>If you are new here, proceed to <a href="#">Sign up</a>.</p>
-
-                </Grid>
-              </Grid>
-            </Box>
+              Next  step
+              </Button>               
+             </Box>
           </Box>
         </Grid>
       </Box>
