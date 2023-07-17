@@ -1,17 +1,9 @@
 import Person2Icon from '@mui/icons-material/Person2'
+import { MenuItem, Item } from '../Types'
+
 import MessageIcon from '@mui/icons-material/Message'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-
-interface Item {
-  icon: React.ComponentType
-  text: string
-}
-
-interface MenuItem {
-  title: string
-  submenu?: MenuItem[]
-}
 
 const menuItems: MenuItem[] = [
   {

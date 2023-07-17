@@ -67,7 +67,7 @@ const PhoneCards = () => {
               justifyContent: 'center',
               alignItems: 'center',
               ml: 'auto',
-              '& > :first-child': {
+              '& > :first-of-type': {
                 color: '#222222',
                 textDecoration: 'none',
                 textTransform: 'capitalize',
@@ -117,7 +117,7 @@ const PhoneCards = () => {
                     </Typography>
 
                     <Typography
-                      variant="body2"
+                      component="p"
                       color="text.secondary"
                       sx={{
                         color: '#222222',
@@ -130,7 +130,7 @@ const PhoneCards = () => {
                     </Typography>
                     <Box sx={{ width: '100%', height: '1px', background: '#EDEDED', my: 1 }}></Box>
                     <Typography
-                      variant="body2"
+                      component="p"
                       sx={{
                         color: '#249B3E',
                         fontSize: isMediumScreen ? '9px' : '13px',

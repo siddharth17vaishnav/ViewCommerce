@@ -1,4 +1,4 @@
-import { CardsProps, CardDetailsType, CardType, ImageDetails } from '../Types'
+import { CardsProps, SwiperContent, ImageDetails } from '../Types'
 
 import {
   Grid,
@@ -24,81 +24,53 @@ const Cards: React.FC<CardsProps> = ({ cards, images }) => {
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'))
   const isXLargeScreen = useMediaQuery(theme.breakpoints.up('lg'))
 
-  const swiperContent = () => {
-    const groupedItems = [] // Array to store grouped items
-
-    if (isLargeScreen) {
-      for (let i = 0; i < CardDetails.cardSwiper.length; i += 3) {
-        // Group items into sets of three
-        const group = CardDetails.cardSwiper.slice(i, i + 3)
-        groupedItems.push(group)
-      }
-    } else if (isMediumScreen && !isSmallScreen) {
-      for (let i = 0; i < CardDetails.cardSwiper.length; i += 2) {
-        // Group items into sets of three
-        const group = CardDetails.cardSwiper.slice(i, i + 2)
-        groupedItems.push(group)
-      }
-    } else {
-      for (let i = 0; i < CardDetails.cardSwiper.length; i += 1) {
-        // Group items into sets of three
-        const group = CardDetails.cardSwiper.slice(i, i + 1)
-        groupedItems.push(group)
-      }
-    }
-
-    return groupedItems
-  }
-
-  const swiperGroup = swiperContent()
-  const renderCard = (card: CardDetailsType) => {
+  const renderCard = (card: SwiperContent) => {
     const { cardNo, color, img, Ellipse, text, amount } = card
-
     return (
-      <Grid item sx={{}}>
-        <Card
-          key={`${cardNo}`}
-          sx={{
-            width: '100%',
-            background: `${color}`,
-            height: '430px',
-            position: 'relative'
-          }}>
-          <CardHeader
-            action={
-              <IconButton
-                aria-label="settings"
-                sx={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  background: '#fff'
-                }}>
-                <FavoriteBorderIcon sx={{ width: '14.67px', height: '13.33px' }} />
-              </IconButton>
-            }
-          />
-          <CardMedia
-            component="img"
-            image={img}
-            alt={`images-${cardNo}`}
-            sx={{ width: '200px', height: '200px', mx: 'auto' }}
-          />
-          <CardContent sx={{ pb: 4, color: '#3E3E3E' }}>
-            <Typography variant="body2" sx={{ mb: 1, fontWeight: 500, fontSize: '12px' }}>
-              Colors
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 0.7 }}>
-              {Ellipse?.map((ellipse, ind) => (
-                <CardMedia
-                  component="img"
-                  src={ellipse}
-                  alt={`Ellipse-${ind}-${cardNo}`}
-                  sx={{ width: '16px', height: '16px' }}
-                  key={ind}
-                />
-              ))}
-            </Box>
+      <Card
+        key={`${cardNo}`}
+        sx={{
+          width: '100%',
+          background: `${color}`,
+          height: '430px',
+          position: 'relative'
+        }}>
+        <CardHeader
+          action={
+            <IconButton
+              aria-label="settings"
+              sx={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                background: '#fff'
+              }}>
+              <FavoriteBorderIcon sx={{ width: '14.67px', height: '13.33px' }} />
+            </IconButton>
+          }
+        />
+        <CardMedia
+          component="img"
+          image={img}
+          alt={`images-${cardNo}`}
+          sx={{ width: '200px', height: '200px', mx: 'auto' }}
+        />
+        <CardContent sx={{ pb: 4, color: '#3E3E3E' }}>
+          <Typography variant="body2" sx={{ mb: 1, fontWeight: 500, fontSize: '12px' }}>
+            Colors
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 0.7 }}>
+            {Ellipse?.map((ellipse, ind) => (
+              <CardMedia
+                component="img"
+                src={ellipse}
+                alt={`Ellipse-${ind}-${cardNo}`}
+                sx={{ width: '16px', height: '16px' }}
+                key={ind}
+              />
+            ))}
+          </Box>
+          <Box sx={{ maxWidth: '450px' }}>
             <Typography
               variant="body2"
               sx={{
@@ -106,24 +78,24 @@ const Cards: React.FC<CardsProps> = ({ cards, images }) => {
                 my: 3,
                 fontWeight: 400,
                 fontSize: '14px',
-                lineHeight: '24px',
-                overflowY: 'scroll'
+                lineHeight: '24px'
+                // overflowY: 'scroll'
               }}>
               {text}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: 500,
-                fontSize: '14px',
-                position: 'absolute',
-                bottom: '15px'
-              }}>
-              {amount} $
-            </Typography>
-          </CardContent>
-        </Card>
-      </Grid>
+          </Box>
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 500,
+              fontSize: '14px',
+              position: 'absolute',
+              bottom: '15px'
+            }}>
+            {amount} $
+          </Typography>
+        </CardContent>
+      </Card>
     )
   }
 
@@ -140,7 +112,7 @@ const Cards: React.FC<CardsProps> = ({ cards, images }) => {
                 md={12}
                 lg={3.9}
                 sx={{
-                  '& > :first-child': {
+                  '& > :first-of-type': {
                     mb: (isLargeScreen && !isXLargeScreen) || isSmallScreen ? 2 : '70px',
                     mr: isLargeScreen && !isXLargeScreen ? 5 : null
                   },
@@ -191,7 +163,10 @@ const Cards: React.FC<CardsProps> = ({ cards, images }) => {
             })}
             {cards === CardDetails.cardSwiper && (
               <Grid item xs={12}>
-                <Swipe SwiperGroup={swiperGroup} renderCard={renderCard} />
+                <Swipe
+                  swiperContent={CardDetails.cardSwiper}
+                  renderSlideContent={content => renderCard(content)}
+                />
               </Grid>
             )}
           </Grid>

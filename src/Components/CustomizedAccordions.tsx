@@ -68,12 +68,14 @@ export default function CustomizedAccordions() {
               panel1d-header
               // sx={{ background: 'red' }}
             >
-              <Typography>{title}</Typography>
+              <Typography sx={{ ml: 1 }}>{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
               {title === selectedButton &&
                 item.submenu?.map((submenuItems, index) => (
-                  <ListItemButton key={`${submenuItems.title}-${index}`}>
+                  <ListItemButton
+                    sx={{ ml: '22.4px', pl: 1 }}
+                    key={`${submenuItems.title}-${index}`}>
                     {submenuItems.title}
                   </ListItemButton>
                 ))}

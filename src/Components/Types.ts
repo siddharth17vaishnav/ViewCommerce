@@ -11,6 +11,7 @@ export interface SwiperContent {
   amount?: string
   renderSlideContent?: () => JSX.Element
 }
+
 export interface CardType {
   cardNo: number
   color: string

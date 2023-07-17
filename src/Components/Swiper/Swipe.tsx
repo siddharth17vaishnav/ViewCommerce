@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 // import banner from '../../assets/Banner.png'
 
-import { Box } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
@@ -14,51 +13,68 @@ import 'swiper/css/navigation'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 
 import { SwipeProps } from '../Types'
+import CardDetails from '../Cards/CardDetails'
 
-const Swipe: React.FC<SwipeProps> = ({
-  swiperContent,
-  renderSlideContent,
-  SwiperGroup,
-  renderCard
-}) => {
+const Swipe: React.FC<SwipeProps> = ({ swiperContent, renderSlideContent }) => {
   const theme = useTheme()
-  // const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
-  // const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'))
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
     <Swiper
-      spaceBetween={0}
-      centeredSlides={true}
+      slidesPerView={
+        swiperContent === CardDetails.cardSwiper
+          ? isSmallScreen
+            ? 1
+            : isMediumScreen
+            ? 2
+            : 3
+          : 'auto'
+      }
+      spaceBetween={swiperContent === CardDetails.cardSwiper ? 20 : 0}
+      centeredSlides={swiperContent === CardDetails.cardSwiper ? false : true}
       autoplay={{
         delay: 3000,
         disableOnInteraction: false
       }}
-      navigation={swiperContent ? false : true}
+      navigation={swiperContent === CardDetails.cardSwiper ? true : false}
       pagination={{
         // dynamicBullets: swiperContent ? true : false,
         clickable: true,
-        ...(swiperContent
+        ...(swiperContent === CardDetails.cardSwiper
           ? {
               renderBullet: function (index, className) {
-                return `<span class="${className}" style="background-color: white;"></span>`
+                return `<span class="${className}" style="background-color: transparent;"></span>`
               }
             }
           : {
               renderBullet: function (index, className) {
-                return `<span class="${className}" style="background-color: transparent;"></span>`
+                return `<span class="${className}" style="background-color: white;"></span>`
               }
             })
       }}
       loop={true}
       modules={[Autoplay, Pagination, Navigation]}
-      className="mySwiper">
+      className="mySwiper"
+      onSwiper={swiper => {
+        swiper.wrapperEl.addEventListener('mouseenter', () => {
+          swiper.navigation.prevEl.style.display = 'block'
+          swiper.navigation.nextEl.style.display = 'block'
+        })
+        swiper.wrapperEl.addEventListener('mouseleave', () => {
+          swiper.navigation.prevEl.style.display = 'none'
+          swiper.navigation.nextEl.style.display = 'none'
+        })
+      }}
+      // onSlideChange={handleSlideChange}
+    >
       {swiperContent?.map(content => (
-        <SwiperSlide key={content.id}>
+        <SwiperSlide key={swiperContent === CardDetails.cardSwiper ? content.cardNo : content.id}>
           {renderSlideContent && renderSlideContent(content)}
         </SwiperSlide>
       ))}
-      {SwiperGroup?.map((group, groupIndex) => (
+      {/* {SwiperGroup?.map((group, groupIndex) => (
         <SwiperSlide
           style={{
             display: 'flex'
@@ -78,7 +94,7 @@ const Swipe: React.FC<SwipeProps> = ({
             )
           })}
         </SwiperSlide>
-      ))}
+      ))} */}
     </Swiper>
   )
 }
