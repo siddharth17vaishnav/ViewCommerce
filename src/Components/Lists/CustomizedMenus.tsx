@@ -54,7 +54,8 @@ export default function BasicMenu() {
                 // ml: isLargeScreen ? 1 : 0,
                 mb: isLargeScreen ? 0 : 2,
                 width: isLargeScreen ? null : '150px',
-                fontWeight: 600
+                fontWeight: 600,
+                pl: 1
               }}>
               {item.title}
               <ExpandMoreIcon />
@@ -84,7 +85,7 @@ export default function BasicMenu() {
             if (title === selectedButton) {
               return item.submenu?.map(submenuItems => {
                 return (
-                  <MenuItem key={title} onClick={handleClose}>
+                  <MenuItem sx={{ pl: 1 }} key={title} onClick={handleClose}>
                     {submenuItems.title}
                   </MenuItem>
                 )
