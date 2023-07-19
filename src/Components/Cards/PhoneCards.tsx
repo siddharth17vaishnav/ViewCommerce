@@ -42,7 +42,7 @@ const PhoneCards = () => {
           <Typography
             sx={{
               //   borderBottom: '4px solid #008ECC',
-              fontSize: isSmallScreen ? '12px' : '24px',
+              fontSize: isMediumScreen ? '15px' : '24px',
               fontWeight: 400,
               pr: 4,
               whiteSpace: 'nowrap',
@@ -71,7 +71,7 @@ const PhoneCards = () => {
                 color: '#222222',
                 textDecoration: 'none',
                 textTransform: 'capitalize',
-                fontSize: isSmallScreen ? '12px' : '20px',
+                fontSize: isMediumScreen ? '15px' : '20px',
                 fontWeight: 400
               }
             }}>
