@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import { FormEvent } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -29,17 +29,18 @@ export default function Login() {
       <Box sx={{ marginTop: 2 }}>
         <Grid container>
           <CssBaseline />
-          <Grid item xs={6} sm={4} md={5} component={Paper} elevation={6} square>
+          <Grid item xs={6} sm={8} md={5} component={Paper} elevation={6} square>
             <Box
               sx={{
-                my: 4,
-                mx: 4,
+                my: 1,
+                mx: 5,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                 transform: "scale(0.8)",
                 [theme.breakpoints.down("sm")]: {
                   mx: 2,
-                  my: 4,
+                  my: 2,
                 },
               }}
             >

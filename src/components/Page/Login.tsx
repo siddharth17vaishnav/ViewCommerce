@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, FormEvent } from "react";
+import { FormEvent } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -34,14 +34,16 @@ export default function Login() {
           <Grid item xs={6} sm={8} md={5} component={Paper} elevation={6} square>
             <Box
               sx={{
-                my: 4,
-                mx: 4,
+                my: 1,
+                mx: 5,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                transform: "scale(0.8)",
+
                 [theme.breakpoints.down("sm")]: {
                   mx: 2,
-                  my: 6,
+                  my: 2,
                 },
               }}
             >
@@ -134,6 +136,7 @@ export default function Login() {
               backgroundColor: (t) =>
                 t.palette.mode === "light" ? t.palette.grey[50] : t.palette.grey[900],
               backgroundSize: "cover",
+             
               backgroundPosition: "center",
               
              

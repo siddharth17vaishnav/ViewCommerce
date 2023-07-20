@@ -35,6 +35,7 @@ export default function Login() {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    
     [theme.breakpoints.down("sm")]: {
       mx: 2,
       my: 6,

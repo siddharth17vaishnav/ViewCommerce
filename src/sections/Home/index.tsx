@@ -11,6 +11,7 @@ import Signindetail from '../../components/admin/Siginindetails';
 import Verifyemail from '../../components/admin/Verifyemail';
 import Businessdetail from '../../components/admin/businessdetail';
 import Congrats from '../../components/admin/Congrats';
+import List1 from '../../components/list/List1';
 
 
 const Home = () => {
@@ -21,7 +22,8 @@ const Home = () => {
           <Route path="/products/P1" element={<P1 />} />
         </Routes>
       </div>
-      
+    
+      <List1 />
       <Congrats />
       <Businessdetail />
       <Verifyemail />
@@ -38,3 +40,7 @@ const Home = () => {
 }
 
 export default Home;
+
+
+
+
