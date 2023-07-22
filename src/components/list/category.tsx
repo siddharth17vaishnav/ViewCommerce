@@ -33,7 +33,9 @@ const FilterSection: React.FC = () => {
       borderRadius: '8px', 
       marginRight: '25px',
       maxWidth: '400px', 
-      margin: '0 auto', 
+      marginTop:'15px',
+      maxHeight:"1490px",
+      
     }}>
       {/* Categories */}
       <div>

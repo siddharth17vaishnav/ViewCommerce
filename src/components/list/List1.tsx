@@ -4,12 +4,14 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { styled } from "@mui/system";
 import Category from "./category";
+import Nextpage from "./Nextpage";
+
+
 
 const Container = styled("div")`
   display: flex;
   justify-content: flex-end;
   margin-right: 250px;
-
   @media (max-width: 1205px) {
     margin-right: 0;
     
@@ -221,12 +223,21 @@ const ProductList: React.FC = () => {
   return (
     <Container>
       <Category />
-      <div>
+      <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end", // To stick Nextpage to the right side
+          paddingTop: "20px",     // Add 20px padding from the top
+          paddingRight: "20px",   // Add 20px padding from the right
+        }}>
         {products.map((product, index) => (
           <Product key={index} {...product} />
         ))}
+         <Nextpage />
       </div>
+     
     </Container>
+    
   );
 };
 
