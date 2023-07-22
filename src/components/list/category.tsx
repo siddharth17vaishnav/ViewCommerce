@@ -31,11 +31,10 @@ const FilterSection: React.FC = () => {
       padding: '20px', 
       boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', 
       borderRadius: '8px', 
-      marginRight: '25px',
-      maxWidth: '400px', 
-      marginTop:'15px',
-      maxHeight:"1490px",
-      
+      maxWidth: '200px',
+      width: '50%', 
+      marginRight:'25px',
+      maxHeight:"1500px",
     }}>
       {/* Categories */}
       <div>
