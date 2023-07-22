@@ -7,6 +7,7 @@ import myList from './NavbarList'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Searchicon from '../Buttons/Searchicon'
 import AllButton from '../Buttons/AllButton'
+import { Link } from 'react-router-dom'
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -40,6 +41,7 @@ export default function BasicMenu() {
         }}>
         {myList.menuItems.map((item, ind) => {
           return (
+            // <Link to={item.title === 'Home' ? `/` : `${item.title}`}>
             <Button
               //  onMouseOver={handleMouseOver}
               ref={selectedButtonRef}
@@ -60,6 +62,7 @@ export default function BasicMenu() {
               {item.title}
               <ExpandMoreIcon />
             </Button>
+            // </Link>
           )
         })}
         <Box
@@ -85,8 +88,17 @@ export default function BasicMenu() {
             if (title === selectedButton) {
               return item.submenu?.map(submenuItems => {
                 return (
-                  <MenuItem sx={{ pl: 1 }} key={title} onClick={handleClose}>
-                    {submenuItems.title}
+                  <MenuItem
+                    sx={{
+                      pl: 1,
+                      '& :nth-of-type(1)': {
+                        textDecoration: 'none',
+                        color: '#000000'
+                      }
+                    }}
+                    key={title}
+                    onClick={handleClose}>
+                    <Link to={submenuItems.title}> {submenuItems.title}</Link>
                   </MenuItem>
                 )
               })

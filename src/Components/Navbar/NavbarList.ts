@@ -10,7 +10,7 @@ const menuItems: MenuItem[] = [
     title: 'Home',
     submenu: [
       {
-        title: 'web dev Home'
+        title: 'Order'
       },
       {
         title: 'web design'

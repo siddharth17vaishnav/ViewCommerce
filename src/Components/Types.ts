@@ -12,22 +12,9 @@ export interface SwiperContent {
   renderSlideContent?: () => JSX.Element
 }
 
-export interface CardType {
-  cardNo: number
-  color: string
-  img: string
-  Ellipse: string[]
-  text: string
-  text2: string
-  amount: string
-}
-
 export interface SwipeProps {
   swiperContent?: SwiperContent[]
   renderSlideContent?: (content: SwiperContent) => JSX.Element | null
-  SwiperGroup?: CardType[][]
-  renderCard?: (card: CardType) => JSX.Element | null
-  // gridComponent?: JSX.Element
 }
 
 export interface CardDetailsType {
@@ -57,4 +44,7 @@ export interface Item {
 export interface MenuItem {
   title: string
   submenu?: MenuItem[]
+}
+export interface image {
+  img: string
 }

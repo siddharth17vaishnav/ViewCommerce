@@ -1,10 +1,10 @@
 import { Box, Container, createTheme, ThemeProvider } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import Typography from '@mui/material/Typography'
-import SideMenu from './Lists/SideMenu'
-import TopOptions from './Lists/TopOptions'
+import SideMenu from './SideMenu'
+import TopOptions from './TopOptions'
 import { useMediaQuery } from '@mui/material'
-import SecondaryDrawer from './Drawers/SecondaryDrawer'
+import SecondaryDrawer from '../Drawers/SecondaryDrawer'
 
 const SubNavbar = () => {
   const theme = createTheme({

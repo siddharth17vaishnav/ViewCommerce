@@ -2,7 +2,7 @@ import Drawer from '@mui/material/Drawer'
 import { useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useMediaQuery } from '@mui/material'
-import TopOptions from '../Lists/TopOptions'
+import TopOptions from '../Navbar/TopOptions'
 
 const SecondaryDrawer = () => {
   const [open, setOpen] = useState(false)

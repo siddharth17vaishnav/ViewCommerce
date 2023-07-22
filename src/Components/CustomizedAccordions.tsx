@@ -4,9 +4,10 @@ import MuiAccordion, { AccordionProps } from '@mui/material/Accordion'
 import MuiAccordionSummary, { AccordionSummaryProps } from '@mui/material/AccordionSummary'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
-import myList from './Lists/NavbarList'
+import myList from './Navbar/NavbarList'
 import React, { useRef } from 'react'
 import { ListItemButton } from '@mui/material'
+import { Link } from 'react-router-dom'
 // import Divider from '@mui/material/Divider'
 
 const Accordion = styled((props: AccordionProps) => (
@@ -42,8 +43,12 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   borderTop: '1px solid rgba(0, 0, 0, .125)'
 }))
+type OnClickHandler = (event: React.MouseEvent<HTMLAnchorElement>) => void
+interface MyComponentProps {
+  handleClose: OnClickHandler
+}
 
-export default function CustomizedAccordions() {
+const CustomizedAccordionst: React.FC<MyComponentProps> = ({ handleClose }) => {
   const [expanded, setExpanded] = React.useState<string | false>('')
   const selectedButtonRef = useRef<string | null>(null)
   const selectedButton = selectedButtonRef.current
@@ -74,9 +79,18 @@ export default function CustomizedAccordions() {
               {title === selectedButton &&
                 item.submenu?.map((submenuItems, index) => (
                   <ListItemButton
-                    sx={{ ml: '22.4px', pl: 1 }}
-                    key={`${submenuItems.title}-${index}`}>
-                    {submenuItems.title}
+                    href=""
+                    sx={{
+                      ml: '22.4px',
+                      pl: 1,
+                      '& :nth-of-type(1)': {
+                        textDecoration: 'none',
+                        color: '#000000'
+                      }
+                    }}
+                    key={`${submenuItems.title}-${index}`}
+                    onClick={handleClose}>
+                    <Link to={submenuItems.title}>{submenuItems.title}</Link>
                   </ListItemButton>
                 ))}
             </AccordionDetails>
@@ -86,3 +100,4 @@ export default function CustomizedAccordions() {
     </div>
   )
 }
+export default CustomizedAccordionst
