@@ -22,6 +22,17 @@ const Nextpage: React.FC = () => {
   };
 
   
+  const hoverStyle: React.CSSProperties = {
+    backgroundColor: "lightgrey", 
+  };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.currentTarget.style.backgroundColor = hoverStyle.backgroundColor || "";
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.currentTarget.style.backgroundColor = linkStyle.backgroundColor || "";
+  };
 
   return (
     <ul style={paginationStyle} className="pagination">
@@ -31,7 +42,12 @@ const Nextpage: React.FC = () => {
         </a>
       </li>
       <li>
-        <a href="#" style={linkStyle}>
+        <a
+          href="#"
+          style={{ ...linkStyle, ...hoverStyle }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           1
         </a>
       </li>
@@ -41,22 +57,42 @@ const Nextpage: React.FC = () => {
         </a>
       </li>
       <li>
-        <a href="#" style={linkStyle}>
+        <a
+          href="#"
+          style={{ ...linkStyle, ...hoverStyle }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           3
         </a>
       </li>
       <li>
-        <a href="#" style={linkStyle}>
+        <a
+          href="#"
+          style={{ ...linkStyle, ...hoverStyle }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           4
         </a>
       </li>
       <li>
-        <a href="#" style={linkStyle}>
+        <a
+          href="#"
+          style={{ ...linkStyle, ...hoverStyle }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           5
         </a>
       </li>
       <li>
-        <a href="#" style={linkStyle}>
+        <a
+          href="#"
+          style={{ ...linkStyle, ...hoverStyle }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           6
         </a>
       </li>
