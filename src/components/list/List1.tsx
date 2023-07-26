@@ -4,7 +4,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { styled } from "@mui/system";
 import Category from "./category";
 import Nextpage from "./Nextpage";
-
+import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 const Container = styled("div")`
   display: flex;
   justify-content: center;
@@ -42,6 +43,11 @@ const ProductCard = styled("div")`
   @media (min-width: 769px) {
     flex-direction: row;
   }
+`;
+const ProductShipping = styled("div")`
+  font-size: 1.25rem;
+  color: #00b517;
+  margin-left: 12px; /* Added margin */
 `;
 
 const ProductImage = styled("img")`
@@ -116,16 +122,35 @@ const WishlistIcon = styled(FavoriteIcon)`
   font-size: 1.5rem;
   cursor: pointer;
 `;
+const ProductRating = styled("div")`
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+`;
+
+const RatingIcon = styled(StarIcon)`
+  font-size: 1.25rem;
+  color: #f9a602;
+  margin-right: 0.25rem;
+`;
+
+const RatingOrders = styled("div")`
+  font-size: 1.25rem;
+  color: #0d6efd;
+  margin-left: 12px; /* Added margin */
+`;
 
 interface ProductProps {
   title: string;
   price: string;
   rating: number[];
+  orders: number;
+  shipping: string;
   description: string;
   imageSrc: string;
 }
 
-const Product: React.FC<ProductProps> = ({ title, price, rating, description, imageSrc }) => {
+const Product: React.FC<ProductProps> = ({ title, price, rating, orders,shipping, description, imageSrc }) => {
   const [isWishlist, setIsWishlist] = useState(false);
 
   const handleWishlistClick = () => {
@@ -142,6 +167,13 @@ const Product: React.FC<ProductProps> = ({ title, price, rating, description, im
       <ProductContent>
         <ProductTitle>{title}</ProductTitle>
         <ProductPrice>{price}</ProductPrice>
+        <ProductRating>
+          {rating.map((_, index) => (
+            <RatingIcon key={index} />
+          ))}
+          <StarBorderIcon />
+          <RatingOrders>{orders} orders</RatingOrders><ProductShipping>{shipping}</ProductShipping>
+        </ProductRating>
         <ProductDescription>{description}</ProductDescription>
         <ProductDetails>
           <a href="#">View details</a>
@@ -175,7 +207,8 @@ const List1: React.FC = () => {
       title: "GoPro HERO6 4K Action Camera - Black",
       price: "RS 80000",
       rating: [1, 2, 3, 4],
-     
+      orders: 154,
+      shipping: "Free Shipping",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
       imageSrc: "src/assets/p1.jpg",
@@ -184,7 +217,8 @@ const List1: React.FC = () => {
       title: "GoPro HERO6 4K Action Camera - Black",
       price: "RS 80000",
       rating: [1, 2, 3, 4],
-      
+      orders: 154,
+      shipping: "Free Shipping",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
       imageSrc: "src/assets/p2.jpg",
@@ -193,7 +227,8 @@ const List1: React.FC = () => {
       title: "GoPro HERO6 4K Action Camera - Black",
       price: "RS 80000",
       rating: [1, 2, 3, 4],
-          
+      orders: 154,
+      shipping: "Free Shipping",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
       imageSrc: "src/assets/p3.jpg",
@@ -202,7 +237,8 @@ const List1: React.FC = () => {
       title: "GoPro HERO6 4K Action Camera - Black",
       price: "RS 80000",
       rating: [1, 2, 3, 4],
-    
+      orders: 154,
+      shipping: "Free Shipping",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
       imageSrc: "src/assets/p4.jpg",
@@ -211,7 +247,8 @@ const List1: React.FC = () => {
       title: "GoPro HERO6 4K Action Camera - Black",
       price: "RS 80000",
       rating: [1, 2, 3, 4],
-      
+      orders: 154,
+      shipping: "Free Shipping",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
       imageSrc: "src/assets/p5.jpg",
