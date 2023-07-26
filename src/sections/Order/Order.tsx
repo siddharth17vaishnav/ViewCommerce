@@ -19,6 +19,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import Divider from '@mui/material/Divider'
 import img from '../../assets/images/order/image 34.png'
 import { useEffect, useRef, useState } from 'react'
+import { scroller } from 'react-scroll'
 import OrderArray from './OrderArray'
 import AllButton from '../../Components/Buttons/AllButton'
 import { Link } from 'react-router-dom'
@@ -576,52 +577,52 @@ const Order = () => {
               </Grid>
             </Box>
           </Paper>
-
-          <Paper
-            ref={myRef}
-            elevation={isSmallScreen || !ProductDetailsOrReview ? 0 : 1}
-            sx={{
-              pb: 2,
-              background: isSmallScreen || !ProductDetailsOrReview ? '#f8f8f8' : null
-            }}>
-            <Box
+          <Box ref={myRef}>
+            <Paper
+              elevation={isSmallScreen || !ProductDetailsOrReview ? 0 : 1}
               sx={{
-                display: isSmallScreen ? 'none' : 'flex',
-
-                gap: 5,
-                px: 5,
-                py: 1
+                pb: 2,
+                background: isSmallScreen || !ProductDetailsOrReview ? '#f8f8f8' : null
               }}>
-              <Button
-                onClick={handleProductDetailsAndReviews}
+              <Box
                 sx={{
-                  fontSize: '16px',
-                  fontWeight: 500,
-                  color: ProductDetailsOrReview ? '#3F65EA' : '#8B96A5'
-                }}>
-                Product Details
-              </Button>
+                  display: isSmallScreen ? 'none' : 'flex',
 
-              <Button
-                onClick={handleProductDetailsAndReviews}
+                  gap: 5,
+                  px: 5,
+                  py: 1
+                }}>
+                <Button
+                  onClick={handleProductDetailsAndReviews}
+                  sx={{
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: ProductDetailsOrReview ? '#3F65EA' : '#8B96A5'
+                  }}>
+                  Product Details
+                </Button>
+
+                <Button
+                  onClick={handleProductDetailsAndReviews}
+                  sx={{
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: !ProductDetailsOrReview ? '#3F65EA' : '#8B96A5'
+                  }}>
+                  Reviews
+                </Button>
+              </Box>
+              <Box
                 sx={{
-                  fontSize: '16px',
-                  fontWeight: 500,
-                  color: !ProductDetailsOrReview ? '#3F65EA' : '#8B96A5'
-                }}>
-                Reviews
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                width: '100%',
-                height: '1px',
-                background: '#D7D7D7',
-                display: isSmallScreen ? 'none' : null
-              }}></Box>
-          </Paper>
+                  width: '100%',
+                  height: '1px',
+                  background: '#D7D7D7',
+                  display: isSmallScreen ? 'none' : null
+                }}></Box>
+            </Paper>
 
-          <Box>{ProductDetailsOrReview ? <ProductDetails /> : <Reviews />}</Box>
+            <Box>{ProductDetailsOrReview ? <ProductDetails /> : <Reviews />}</Box>
+          </Box>
         </Grid>
       </Typography>
     </ThemeProvider>
