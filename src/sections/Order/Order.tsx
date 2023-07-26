@@ -77,7 +77,7 @@ const Order = () => {
 
   const handleProductDetailsAndReviews = () => {
     setProductDetailsOrReview(!ProductDetailsOrReview)
-    scrollToDiv()
+    // scrollToDiv()
   }
   const handleReviews = () => {
     setProductDetailsOrReview(false)
