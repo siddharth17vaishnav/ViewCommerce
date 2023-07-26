@@ -3,6 +3,7 @@ import {
   Button,
   CardMedia,
   Container,
+  IconButton,
   ThemeProvider,
   Typography,
   createTheme,
@@ -16,6 +17,9 @@ import StarIcon from '@mui/icons-material/Star'
 import MessageIcon from '@mui/icons-material/Message'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+
 import Divider from '@mui/material/Divider'
 import img from '../../assets/images/order/image 34.png'
 import { useEffect, useRef, useState } from 'react'
@@ -46,7 +50,9 @@ const Order = () => {
   const myRef = useRef<HTMLDivElement>(null)
   const [displayText, setDisplayText] = useState('')
   const [displayImage, setDisplayImage] = useState('')
+  const [clickedIndex, setClickedIndex] = useState(-1)
   const [textTruncate, setTextTruncate] = useState(false)
+
   const [ProductDetailsOrReview, setProductDetailsOrReview] = useState(true)
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
@@ -62,11 +68,12 @@ const Order = () => {
 
   useEffect(() => {
     setDisplayText(text.length < lengthOfText ? text : `${textSlice}...`)
-    setDisplayImage(img)
+    setDisplayImage(OrderArray.order[0].img)
   }, [])
 
-  const handleImage = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
-    setDisplayImage(e.currentTarget.src)
+  const handleImage = (ind: number) => {
+    setDisplayImage(OrderArray.order[ind].img)
+    setClickedIndex(ind)
   }
 
   const handleText = () => {
@@ -83,6 +90,21 @@ const Order = () => {
   const handleReviews = () => {
     setProductDetailsOrReview(false)
     scrollToDiv()
+  }
+  const handleImageClickForward = () => {
+    const currentIndex = OrderArray.order.findIndex(item => item.img === displayImage)
+
+    currentIndex === OrderArray.order.length - 1
+      ? setDisplayImage(OrderArray.order[0].img)
+      : setDisplayImage(OrderArray.order[currentIndex + 1].img)
+  }
+
+  const handleImageClickBack = () => {
+    const currentIndex = OrderArray.order.findIndex(item => item.img === displayImage)
+    console.log(currentIndex)
+    currentIndex === 0
+      ? setDisplayImage(OrderArray.order[OrderArray.order.length - 1].img)
+      : setDisplayImage(OrderArray.order[currentIndex - 1].img)
   }
   const scrollToDiv = () => {
     myRef.current?.scrollIntoView({
@@ -112,8 +134,13 @@ const Order = () => {
             }}>
             <Box sx={{ borderRadius: '3px' }}>
               <Grid container spacing={isMediumScreen ? 0 : 2}>
-                <Grid item md={6} lg={4.1}>
-                  <Paper elevation={0} sx={{ border: 'solid 1.24px #DEE2E7' }}>
+                <Grid item md={6} lg={4.1} sx={{ width: '100%' }}>
+                  <Paper
+                    elevation={0}
+                    sx={{
+                      border: 'solid 1.24px #DEE2E7',
+                      position: 'relative'
+                    }}>
                     <CardMedia
                       component="img"
                       src={displayImage}
@@ -125,6 +152,37 @@ const Order = () => {
                         borderRadius: '5px'
                       }}
                     />
+                    {isSmallScreen && (
+                      <Box
+                        sx={{
+                          width: '71px',
+                          height: '34p',
+                          borderRadius: '36px',
+                          background: 'rgba(0, 0, 0, 0.25)',
+                          position: 'absolute',
+                          bottom: 0,
+                          right: 0
+                        }}>
+                        <IconButton href="" onClick={handleImageClickBack}>
+                          <ArrowBackIcon
+                            sx={{
+                              width: '19px',
+                              height: '19px',
+                              color: 'white'
+                            }}
+                          />
+                        </IconButton>
+                        <IconButton href="" onClick={handleImageClickForward}>
+                          <ArrowForwardIcon
+                            sx={{
+                              width: '19px',
+                              height: '19px',
+                              color: 'white'
+                            }}
+                          />
+                        </IconButton>
+                      </Box>
+                    )}
                   </Paper>
                   <Box
                     sx={{
@@ -150,10 +208,11 @@ const Order = () => {
                             p: 0.5,
 
                             borderRadius: '5px',
-                            border: 'solid 1.24px #DEE2E7',
+                            border:
+                              img === displayImage ? 'solid 2px #505050' : 'solid 1.24px #DEE2E7',
                             display: isSmallScreen ? 'none' : null
                           }}
-                          onClick={handleImage}
+                          onClick={() => handleImage(ind)}
                         />
                       )
                     })}
@@ -294,14 +353,16 @@ const Order = () => {
                           alignItems: 'center',
                           justifyContent: 'center'
                         }}>
-                        <FavoriteBorderIcon
-                          sx={{
-                            // border: '1px solid #DEE2E7',
-                            width: '24px',
-                            height: '24px',
-                            color: '#0D6EFD'
-                          }}
-                        />
+                        <IconButton>
+                          <FavoriteBorderIcon
+                            sx={{
+                              // border: '1px solid #DEE2E7',
+                              width: '24px',
+                              height: '24px',
+                              color: '#0D6EFD'
+                            }}
+                          />
+                        </IconButton>
                       </Paper>
                     </Box>
                     <Typography
