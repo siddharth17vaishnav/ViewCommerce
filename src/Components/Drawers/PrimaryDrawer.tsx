@@ -15,7 +15,6 @@ const PrimaryDrawer = () => {
   console.log(isLargeScreen)
   const handleClose = () => {
     setOpen(!open)
-    console.log(open)
   }
 
   return (

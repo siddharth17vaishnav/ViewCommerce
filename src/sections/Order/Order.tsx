@@ -42,8 +42,9 @@ const theme = createTheme({
   }
 })
 const Order = () => {
-  // const myRef = useRef<HTMLParagraphElement>(null)
+  const myRef = useRef<HTMLDivElement>(null)
   const [displayText, setDisplayText] = useState('')
+  const [displayImage, setDisplayImage] = useState('')
   const [textTruncate, setTextTruncate] = useState(false)
   const [ProductDetailsOrReview, setProductDetailsOrReview] = useState(true)
 
@@ -60,7 +61,12 @@ const Order = () => {
 
   useEffect(() => {
     setDisplayText(text.length < lengthOfText ? text : `${textSlice}...`)
+    setDisplayImage(img)
   }, [])
+
+  const handleImage = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+    setDisplayImage(e.currentTarget.src)
+  }
 
   const handleText = () => {
     textTruncate === true
@@ -71,6 +77,16 @@ const Order = () => {
 
   const handleProductDetailsAndReviews = () => {
     setProductDetailsOrReview(!ProductDetailsOrReview)
+    scrollToDiv()
+  }
+  const handleReviews = () => {
+    setProductDetailsOrReview(false)
+    scrollToDiv()
+  }
+  const scrollToDiv = () => {
+    myRef.current?.scrollIntoView({
+      behavior: 'smooth'
+    })
   }
 
   const propertiesArray = isSmallScreen
@@ -99,17 +115,27 @@ const Order = () => {
                   <Paper elevation={0} sx={{ border: 'solid 1.24px #DEE2E7' }}>
                     <CardMedia
                       component="img"
-                      src={img}
+                      src={displayImage}
                       alt={`Order-images`}
                       sx={{
                         // width: '100%',
-                        // height: '180px',
+                        height: '426px',
                         p: 2,
                         borderRadius: '5px'
                       }}
                     />
                   </Paper>
-                  <Box sx={{ display: 'flex', my: 2, width: '100%', gap: 0.5, cursor: 'pointer' }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      // flexWrap: 'wrap',
+                      my: 2,
+                      width: '100%',
+                      // gap: 2,
+                      justifyContent: 'space-between',
+                      cursor: 'pointer'
+                      // overflowY: isSmallScreen ? 'scroll' : null
+                    }}>
                     {OrderArray.order.map((item, ind) => {
                       const { img } = item
                       return (
@@ -124,9 +150,9 @@ const Order = () => {
 
                             borderRadius: '5px',
                             border: 'solid 1.24px #DEE2E7',
-                            display: isLargeScreen ? 'none' : null
+                            display: isSmallScreen ? 'none' : null
                           }}
-                          // onClick={handleImage}
+                          onClick={handleImage}
                         />
                       )
                     })}
@@ -196,7 +222,8 @@ const Order = () => {
                             mx: 1.3,
                             display: isSmallScreen ? 'none' : null
                           }}></Box>
-                        <Box
+                        <Button
+                          onClick={handleReviews}
                           sx={{
                             display: 'flex',
                             alignItems: 'center',
@@ -205,7 +232,7 @@ const Order = () => {
                           }}>
                           <MessageIcon
                             sx={{
-                              color: '#8B96A5',
+                              color: '#FF9017',
                               width: isSmallScreen ? '17px' : '25px',
                               height: isSmallScreen ? '17px' : '25px'
                             }}
@@ -213,13 +240,13 @@ const Order = () => {
                           <Typography
                             component="p"
                             sx={{
-                              color: '#787A80',
+                              color: '#FF9017',
                               fontSize: isSmallScreen ? '15px' : '18px',
                               fontWeight: 400
                             }}>
                             32 reviews
                           </Typography>
-                        </Box>
+                        </Button>
                         <Box
                           sx={{
                             width: '7px',
@@ -280,11 +307,14 @@ const Order = () => {
                       component="p"
                       sx={{
                         display: isSmallScreen ? 'none' : null,
-                        fontSize: '18px',
-                        fontWeight: 400,
-                        color: '#3F65EA'
+                        '& > :first-of-type': {
+                          fontSize: '18px',
+                          fontWeight: 400,
+                          color: '#3F65EA',
+                          textDecoration: 'none'
+                        }
                       }}>
-                      Be the first to Review this product
+                      <Link to="">Be the first to Review this product</Link>
                     </Typography>
                     <Divider
                       sx={{ display: isSmallScreen ? 'none' : null, background: '#E0E0E0', mb: 2 }}
@@ -449,12 +479,14 @@ const Order = () => {
                           <Typography
                             component="p"
                             sx={{
-                              color: '#C9C9C9',
-                              borderBottom: '2px solid #C9C9C9',
-                              fontWeight: 400,
-                              fontSize: isSmallScreen ? '15px' : '18px'
+                              '& > :first-of-type': {
+                                color: '#C9C9C9',
+                                borderBottom: '2px solid #C9C9C9',
+                                fontWeight: 400,
+                                fontSize: isSmallScreen ? '15px' : '18px'
+                              }
                             }}>
-                            Enter delivery code
+                            <Link to="">Enter delivery code</Link>
                           </Typography>
                           <Typography
                             component="p"
@@ -474,25 +506,45 @@ const Order = () => {
                         sx={{
                           display: 'flex',
                           flexDirection: 'column',
-                          color: '#1ABA00',
                           gap: 1
                         }}>
                         <Box sx={{ display: isSmallScreen ? 'flex' : null, gap: 5 }}>
                           <Typography
                             component="p"
-                            sx={{ fontWeight: 400, fontSize: isSmallScreen ? '13px' : '18px' }}>
-                            Bank Offer
+                            sx={{
+                              '& > :first-of-type': {
+                                fontWeight: 400,
+                                color: '#1ABA00',
+                                textDecoration: 'none',
+                                fontSize: isSmallScreen ? '13px' : '18px'
+                              }
+                            }}>
+                            <Link to="">Bank Offer</Link>
                           </Typography>
                           <Typography
                             component="p"
-                            sx={{ fontWeight: 400, fontSize: isSmallScreen ? '15px' : '18px' }}>
-                            Credit card offer
+                            sx={{
+                              '& > :first-of-type': {
+                                color: '#1ABA00',
+                                textDecoration: 'none',
+                                fontWeight: 400,
+                                fontSize: isSmallScreen ? '15px' : '18px'
+                              }
+                            }}>
+                            <Link to="">Credit card offer</Link>
                           </Typography>
                         </Box>
                         <Typography
                           component="p"
-                          sx={{ fontWeight: 400, fontSize: isSmallScreen ? '15px' : '18px' }}>
-                          10% cash back payment via Gpay
+                          sx={{
+                            '& > :first-of-type': {
+                              color: '#1ABA00',
+                              textDecoration: 'none',
+                              fontWeight: 400,
+                              fontSize: isSmallScreen ? '15px' : '18px'
+                            }
+                          }}>
+                          <Link to="">10% cash back payment via Gpay</Link>
                         </Typography>
                       </Box>
                       <Box sx={{ display: isSmallScreen ? 'none' : null }}>
@@ -501,7 +553,7 @@ const Order = () => {
                       </Box>
                     </Typography>
                   </Paper>
-                  <Typography
+                  <Button
                     component="div"
                     sx={{
                       display: isSmallScreen ? 'none' : 'flex',
@@ -519,13 +571,14 @@ const Order = () => {
                       }}>
                       Save for later
                     </Typography>
-                  </Typography>
+                  </Button>
                 </Grid>
               </Grid>
             </Box>
           </Paper>
 
           <Paper
+            ref={myRef}
             elevation={isSmallScreen || !ProductDetailsOrReview ? 0 : 1}
             sx={{
               pb: 2,

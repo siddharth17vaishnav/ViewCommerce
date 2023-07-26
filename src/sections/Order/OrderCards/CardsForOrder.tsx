@@ -30,11 +30,11 @@ interface CardsForOrderProps {
   isReview?: boolean
 }
 const CardsForOrder: React.FC<CardsForOrderProps> = ({ isReview }) => {
-  console.log(isReview)
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   const isLargeScreen = useMediaQuery(theme.breakpoints.down('lg'))
+
   return (
     <ThemeProvider theme={theme}>
       <Grid
@@ -47,7 +47,7 @@ const CardsForOrder: React.FC<CardsForOrderProps> = ({ isReview }) => {
 
           width: '100%',
           gap: 3,
-          justifyContent: 'space-between'
+          justifyContent: 'space-evenly'
         }}>
         {CardDetailsForOrders.cardsDetails.map((items, ind) => {
           const { img1, img2, img3, icon, brand, Discount, backGroundColor, color } = items
