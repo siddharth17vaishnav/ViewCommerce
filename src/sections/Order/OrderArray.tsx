@@ -5,7 +5,7 @@ import img4 from '../../assets/images/order/image 37.png'
 import img5 from '../../assets/images/order/image 35.png'
 import img6 from '../../assets/images/order/image 39.png'
 
-import { image } from '@/Components/Types'
+import { image, reviewDetails } from '@/Components/Types'
 
 const order: image[] = [
   {
@@ -75,4 +75,61 @@ const modernShoesPropertiesSm = [
   }
 ]
 
-export default { order, modernShoesPropertiesSm, modernShoesProperties1, modernShoesProperties2 }
+const Reviews: reviewDetails[] = [
+  {
+    id: 1,
+    numberOfLikes: 0,
+    numberOfDisLikes: 0,
+    rating: 5,
+    coment1: 'Superb Product',
+    coment2: 'Just freakin loved it🙌',
+    image: img1,
+    text1: 'Sahil Gupta',
+    date: '1 month ago',
+    text2: 'Certified Buyer, Bengaluru'
+  },
+  {
+    id: 2,
+    numberOfLikes: 0,
+    numberOfDisLikes: 0,
+    rating: 4.1,
+    coment1: 'NICE PRODUCT',
+    coment2: 'ITS ASOME',
+    image: img2,
+    text1: 'Sahil Gupta',
+    date: '1 month ago',
+    text2: 'Certified Buyer, Bengaluru'
+  },
+  {
+    id: 3,
+    numberOfLikes: 0,
+    numberOfDisLikes: 0,
+    rating: 4.5,
+    coment1: 'Amazing shoes its very light',
+    coment2: 'just loved it',
+    image: img3,
+    text1: 'Sahil Gupta',
+    date: '1 month ago',
+    text2: 'Certified Buyer, Bengaluru'
+  },
+  {
+    id: 4,
+    numberOfLikes: 0,
+    numberOfDisLikes: 0,
+    rating: 5,
+    coment1: 'Super soft shoes',
+    coment2: 'quite good',
+    image: img4,
+    text1: 'Sahil Gupta',
+    date: '1 month ago',
+    text2: 'Certified Buyer, Bengaluru'
+  }
+]
+
+export default {
+  order,
+  modernShoesPropertiesSm,
+  modernShoesProperties1,
+  modernShoesProperties2,
+  Reviews
+}

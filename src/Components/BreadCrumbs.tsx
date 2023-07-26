@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom'
 const BreadCrumbs = () => {
   const [firstPath, setFirstPath] = useState('')
   const location = useLocation()
-  console.log(location)
   const path = location.pathname.replace(/\//g, '')
   useEffect(() => {
     myList.menuItems.map(items =>

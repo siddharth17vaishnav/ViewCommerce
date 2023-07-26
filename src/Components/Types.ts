@@ -48,3 +48,30 @@ export interface MenuItem {
 export interface image {
   img: string
 }
+export interface reviewDetails {
+  id: number
+  numberOfLikes: number
+  numberOfDisLikes: number
+  rating: number
+  coment1: string
+  coment2: string
+  image: string
+  text1: string
+  date: string
+  text2: string
+}
+
+export interface CardDetailsForOrderdetails {
+  img1: string
+  img2: string
+  img3: string
+  icon?: React.ElementType
+  brand: string
+  Discount: string
+  backGroundColor: string
+  color: string
+}
+
+export interface CardDetailsForOrderdetails1 {
+  item: string
+}
