@@ -69,10 +69,10 @@ export default function Login() {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="Enter Otp"
+                label="Enter Otp "
+                name="Enter Otp"
+                autoComplete="Enter Otp"
                 autoFocus
               />
 
