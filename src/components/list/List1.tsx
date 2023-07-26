@@ -6,6 +6,7 @@ import Category from "./category";
 import Nextpage from "./Nextpage";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+
 const Container = styled("div")`
   display: flex;
   justify-content: center;
@@ -183,7 +184,7 @@ const Product: React.FC<ProductProps> = ({ title, price, rating, orders,shipping
   );
 };
 
-const List1: React.FC = () => {
+const List1 = () => {
   const [showCategory, setShowCategory] = useState(window.innerWidth > 564);
 
   useEffect(() => {
@@ -270,7 +271,7 @@ const List1: React.FC = () => {
           }}
         />
       )}
-      {!showCategory && ( // Conditionally render MenuIconWrapper
+      {window.innerWidth <= 564 && ( // Conditionally render MenuIconWrapper based on screen width
         <MenuIconWrapper onClick={toggleCategory}>
           <MenuIcon style={{ fontSize: "24px" }} />
         </MenuIconWrapper>
