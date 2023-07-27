@@ -22,7 +22,7 @@ const MenuIconWrapper = styled("div")`
   position: absolute;
   top: 10px;
   left: 10px;
-  z-index: 1; /* Ensure the menu icon is above other elements */
+  z-index: 3; /* Ensure the menu icon is above other elements */
   cursor: pointer;
 `;
 
@@ -185,14 +185,18 @@ const Product: React.FC<ProductProps> = ({ title, price, rating, orders,shipping
 };
 
 const List1 = () => {
-  const [showCategory, setShowCategory] = useState(window.innerWidth > 564);
+  const [showMenuIcon, setShowMenuIcon] = useState(false);
+  const [showCategory, setShowCategory] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
-      setShowCategory(window.innerWidth > 564);
+      const isSmallScreen = window.innerWidth <= 564;
+      setShowMenuIcon(isSmallScreen); // Show the menu icon only for small screens
+      setShowCategory(!isSmallScreen); // Show the category page for large screens, hide for small screens
     };
 
     window.addEventListener("resize", handleResize);
+    handleResize(); // Initialize the state on mount
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -200,7 +204,7 @@ const List1 = () => {
   }, []);
 
   const toggleCategory = () => {
-    setShowCategory(!showCategory);
+    setShowCategory((prevShowCategory) => !prevShowCategory);
   };
 
   const products: ProductProps[] = [
@@ -258,20 +262,30 @@ const List1 = () => {
 
   return (
     <Container>
-      {showCategory && (
-        <Category
+      {showCategory && window.innerWidth > 564 && <Category />} {/* Show Category only on full screen */}
+      {showMenuIcon && ( // Conditionally render the menu icon for screen size <= 564px
+        <MenuIconWrapper onClick={toggleCategory}>
+          <MenuIcon style={{ fontSize: "24px" }} />
+        </MenuIconWrapper>
+      )}
+      {showCategory && showMenuIcon && ( // Show the curtain menu when the menu icon is clicked
+        <div
+          id="category-menu"
           style={{
             position: "absolute",
             top: 0,
             left: 0,
             width: "100%",
             height: "100%",
-            background: "rgba(0, 0, 0, 0.5)", // Adjust the background color and opacity as needed
-            zIndex: 2, // Ensure the category page is above the products
+            background: "rgba(255, 255, 255, 0.95)",
+            zIndex: 3,
+            display: showCategory ? "block" : "none",
           }}
-        />
+        >
+          <Category />
+        </div>
       )}
-      {window.innerWidth <= 564 && ( // Conditionally render MenuIconWrapper based on screen width
+      {showMenuIcon && ( // Conditionally render the menu icon for screen size <= 564px
         <MenuIconWrapper onClick={toggleCategory}>
           <MenuIcon style={{ fontSize: "24px" }} />
         </MenuIconWrapper>
@@ -287,3 +301,4 @@ const List1 = () => {
 };
 
 export default List1;
+
