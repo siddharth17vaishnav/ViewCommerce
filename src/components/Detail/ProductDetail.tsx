@@ -8,10 +8,14 @@ import p15 from '../../assets/p15.jpg';
 import p16 from '../../assets/p16.jpg';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Info from '../../components/Detail/Info';
+import Link from '@mui/material/Link';
 
 const CenteredCardContainer = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column; 
+  align-items: center; /
 `;
 
 const CardContainer = styled.div`
@@ -68,12 +72,19 @@ const AnotherCard = styled.div`
   height: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-
+  
   @media (min-width: 768px) {
     padding: 30px;
   }
+  margin-left: 25px;
+  margin-top: 40px
+  
 `;
-
+const CheckLink = styled(Link)`
+  text-align: right;
+  display: block;
+  margin-bottom: 10px;
+`;
 const GreenText = styled.p`
   color: green;
 `;
@@ -135,7 +146,9 @@ const Card: React.FC = () => {
               id="Enter Delivery Code"
               autoComplete="current-Enter Delivery Code"
             />
-
+              <CheckLink href="#" variant="body2">
+              check
+            </CheckLink>
             <GreenText>Bank Offer</GreenText>
             <GreenText>Credit card offer</GreenText>
             <GreenText>10% cash back payment via Gpay</GreenText>
@@ -150,7 +163,9 @@ const Card: React.FC = () => {
           </AnotherCard>
         </Column>
       </CardContainer>
+     <Info />
     </CenteredCardContainer>
+     
   );
 };
 
