@@ -12,7 +12,7 @@ import Verifyemail from '../../components/admin/Verifyemail';
 import Businessdetail from '../../components/admin/businessdetail';
 import Congrats from '../../components/admin/Congrats';
 import List1 from '../../components/list/List1';
-import ProductDetail from '../../components/Detail/ProductDetail';
+
 
 
 const Home = () => {
@@ -23,7 +23,7 @@ const Home = () => {
           <Route path="/products/P1" element={<P1 />} />
         </Routes>
       </div>
-    <ProductDetail />
+   
       <List1 />
       <Congrats />
       <Businessdetail />

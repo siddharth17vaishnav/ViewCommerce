@@ -5,6 +5,7 @@ const App: React.FC = () => {
     position: "relative",
     width: "100%",
     height: "100vh",
+    top:'50px',
     
   };
 

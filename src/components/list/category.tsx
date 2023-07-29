@@ -1,14 +1,33 @@
 import React, { useState } from 'react';
+import StarIcon from '@mui/icons-material/Star';
+import { Rating, Radio, RadioGroup, FormControlLabel } from '@mui/material';
 
+interface RatingWithSmallerStarsProps {
+  value: number;
+  max: number;
+}
+const RatingWithSmallerStars: React.FC<RatingWithSmallerStarsProps> = ({ value, max }) => {
+  const starSize = '60%';
+  const remainingStarSize = '60%'; 
+
+  return (
+    <Rating
+      value={value}
+      max={max}
+      readOnly
+      icon={<StarIcon style={{ color: 'orange', fontSize: starSize }} />}
+      emptyIcon={<StarIcon style={{ color: 'lightgrey', fontSize: remainingStarSize }} />}
+    />
+  );
+};
 const FilterSection: React.FC = () => {
- 
-  const [priceRange, setPriceRange] = useState<number[]>([0, 1000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
 
- 
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+  const [selectedCondition, setSelectedCondition] = useState<string>('Any');
+  const [ratingValue, setRatingValue] = useState<string>('5');
 
-  
   const handleBrandSelection = (brand: string) => {
     if (selectedBrands.includes(brand)) {
       setSelectedBrands(selectedBrands.filter((b) => b !== brand));
@@ -17,7 +36,6 @@ const FilterSection: React.FC = () => {
     }
   };
 
-  
   const handleFeatureSelection = (feature: string) => {
     if (selectedFeatures.includes(feature)) {
       setSelectedFeatures(selectedFeatures.filter((f) => f !== feature));
@@ -26,19 +44,26 @@ const FilterSection: React.FC = () => {
     }
   };
 
+  const handleConditionSelection = (condition: string) => {
+    setSelectedCondition(condition);
+  };
+
+  const handleRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRatingValue(event.target.value);
+  };
   return (
     <div style={{ 
       padding: '20px', 
-      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', 
+      //boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', 
       borderRadius: '8px', 
       maxWidth: '200px',
       width: '50%', 
       marginRight:'25px',
       maxHeight:"1480px",
-      marginTop:"20px",
+      marginTop:"10px",
     }}>
       {/* Categories */}
-      <div>
+      <div style={{ marginBottom: '30px' }}>
         <h3>Categories</h3>
         <ul style={{ listStyle: 'none', padding: 0 }}>
           <li style={{ marginBottom: '10px' }}>Mobile accessory</li>
@@ -52,7 +77,7 @@ const FilterSection: React.FC = () => {
       </div>
 
       {/* Brands */}
-      <div>
+      <div style={{ marginBottom: '30px' }}>
         <h3>Brands</h3>
         <ul style={{ listStyle: 'none', padding: 0 }}>
           <li style={{ marginBottom: '10px' }}>
@@ -106,12 +131,16 @@ const FilterSection: React.FC = () => {
               />
               Apple
             </label>
+            
+          </li>
+          <li>
+            <a href="#">See All</a>
           </li>
         </ul>
       </div>
 
       {/* Features */}
-      <div>
+      <div style={{ marginBottom: '30px' }}>
         <h3>Features</h3>
         <ul style={{ listStyle: 'none', padding: 0 }}>
           <li style={{ marginBottom: '10px' }}>
@@ -166,12 +195,15 @@ const FilterSection: React.FC = () => {
               Large memory
             </label>
           </li>
+          <li>
+            <a href="#">See All</a>
+          </li>
         </ul>
       </div>
        
 
       {/* Price Range */}
-      <div>
+      <div style={{ marginBottom: '30px' }}>
       <h3>Price Range</h3>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <span style={{ marginRight: '10px' }}>${priceRange[0]}</span>
@@ -219,7 +251,7 @@ const FilterSection: React.FC = () => {
     </div>
 
       {/* Colors */}
-      <div>
+      <div style={{ marginBottom: '30px' }}>
         <h3>Colors</h3>
         <div style={{ display: 'flex', gap: '10px' }}>
           <div style={{ backgroundColor: 'red', width: '20px', height: '20px', borderRadius: '10px' }}></div>
@@ -229,8 +261,104 @@ const FilterSection: React.FC = () => {
           <div style={{ backgroundColor: 'violet', width: '20px', height: '20px', borderRadius: '10px' }}></div>
         </div>
       </div>
-    </div>
+       
+      {/* Condition */}
+      <div style={{ marginBottom: '30px' }}>
+        <h3>Condition</h3>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
+          <li style={{ marginBottom: '10px' }}>
+            <label>
+              <input
+                type="radio"
+                name="condition"
+                value="Any"
+                checked={selectedCondition === 'Any'}
+                onChange={() => handleConditionSelection('Any')}
+                style={{ marginRight: '5px' }}
+              />
+              Any
+            </label>
+          </li>
+          <li style={{ marginBottom: '10px' }}>
+            <label>
+              <input
+                type="radio"
+                name="condition"
+                value="Refurbished"
+                checked={selectedCondition === 'Refurbished'}
+                onChange={() => handleConditionSelection('Refurbished')}
+                style={{ marginRight: '5px' }}
+              />
+              Refurbished
+            </label>
+          </li>
+          <li style={{ marginBottom: '10px' }}>
+            <label>
+              <input
+                type="radio"
+                name="condition"
+                value="Brand new"
+                checked={selectedCondition === 'Brand new'}
+                onChange={() => handleConditionSelection('Brand new')}
+                style={{ marginRight: '5px' }}
+              />
+              Brand new
+            </label>
+          </li>
+          <li style={{ marginBottom: '10px' }}>
+            <label>
+              <input
+                type="radio"
+                name="condition"
+                value="Modern tech"
+                checked={selectedCondition === 'Modern tech'}
+                onChange={() => handleConditionSelection('Modern tech')}
+                style={{ marginRight: '5px' }}
+              />
+              Modern tech
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div>
+      <div>
+       {/* Rating */}
+       <div style={{ marginBottom: '30px' }}>
+        <h3>Rating</h3>
+        <RadioGroup name="rating" value={ratingValue} onChange={handleRatingChange}>
+          <FormControlLabel
+            value="5"
+            control={<Radio color="primary" />}
+            label={<RatingWithSmallerStars value={5} max={5} />}
+          />
+          <FormControlLabel
+            value="4"
+            control={<Radio color="primary" />}
+            label={<RatingWithSmallerStars value={4} max={5} />}
+          />
+          <FormControlLabel
+            value="3"
+            control={<Radio color="primary" />}
+            label={<RatingWithSmallerStars value={3} max={5} />}
+          />
+          <FormControlLabel
+            value="2"
+            control={<Radio color="primary" />}
+            label={<RatingWithSmallerStars value={2} max={5} />}
+          />
+          <FormControlLabel
+            value="1"
+            control={<Radio color="primary" />}
+            label={<RatingWithSmallerStars value={1} max={5} />}
+          />
+        </RadioGroup>
+      </div>
+    </div></div></div>
   );
 };
 
 export default FilterSection;
+
+
+
+

@@ -11,6 +11,7 @@ const Container = styled("div")`
   display: flex;
   justify-content: center;
   position: relative; /* Set relative positioning to contain the category page */
+  top: 40px;
 
   @media (max-width: 564px) {
     flex-direction: column;
@@ -20,7 +21,7 @@ const Container = styled("div")`
 
 const MenuIconWrapper = styled("div")`
   position: absolute;
-  top: 10px;
+  top: -20px;
   left: 10px;
   z-index: 3; /* Ensure the menu icon is above other elements */
   cursor: pointer;
@@ -28,6 +29,8 @@ const MenuIconWrapper = styled("div")`
 
 const ProductCard = styled("div")`
   display: flex;
+  flex-direction: row; 
+  align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
@@ -45,11 +48,7 @@ const ProductCard = styled("div")`
     flex-direction: row;
   }
 `;
-const ProductShipping = styled("div")`
-  font-size: 1.25rem;
-  color: #00b517;
-  margin-left: 12px; /* Added margin */
-`;
+
 
 const ProductImage = styled("img")`
   max-width: 40%;
@@ -71,7 +70,7 @@ const ProductContent = styled("div")`
 
   @media (max-width: 720px) {
     max-width: 100%;
-    padding-left: 0;
+    padding-left: 20;
     text-align: center;
   }
 `;
@@ -82,7 +81,8 @@ const ProductTitle = styled("div")`
   margin-bottom: 0.5rem;
 
   @media (max-width: 720px) {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    
   }
 `;
 
@@ -93,6 +93,7 @@ const ProductPrice = styled("div")`
 
   @media (max-width: 720px) {
     font-size: 1rem;
+    
   }
 `;
 
@@ -103,6 +104,7 @@ const ProductDescription = styled("div")`
 
   @media (max-width: 720px) {
     font-size: 0.9rem;
+    
   }
 `;
 
@@ -127,18 +129,40 @@ const ProductRating = styled("div")`
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
+
+  
+ 
 `;
 
 const RatingIcon = styled(StarIcon)`
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #f9a602;
   margin-right: 0.25rem;
+
+  @media (max-width: 720px) {
+    font-size: 0.85rem;
+    
+  }
 `;
 
 const RatingOrders = styled("div")`
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #0d6efd;
-  margin-left: 12px; /* Added margin */
+  margin-left: 12px;
+
+  @media (max-width: 720px) {
+    font-size: 0.85rem;
+  }
+`;
+
+const ProductShipping = styled("div")`
+  font-size: 1rem;
+  color: #00b517;
+  margin-left: 12px;
+
+  @media (max-width: 720px) {
+    font-size: 0.85rem;
+  }
 `;
 
 interface ProductProps {
@@ -166,15 +190,17 @@ const Product: React.FC<ProductProps> = ({ title, price, rating, orders,shipping
       />
       <ProductImage alt="" src={imageSrc} />
       <ProductContent>
-        <ProductTitle>{title}</ProductTitle>
-        <ProductPrice>{price}</ProductPrice>
-        <ProductRating>
+      <ProductTitle>{title}</ProductTitle>
+      <ProductRating>
           {rating.map((_, index) => (
             <RatingIcon key={index} />
           ))}
           <StarBorderIcon />
-          <RatingOrders>{orders} orders</RatingOrders><ProductShipping>{shipping}</ProductShipping>
+          <RatingOrders>{orders} orders</RatingOrders>
+          <ProductShipping>{shipping}</ProductShipping>
         </ProductRating>
+        <ProductPrice>{price}</ProductPrice>
+        
         <ProductDescription>{description}</ProductDescription>
         <ProductDetails>
           <a href="#">View details</a>
@@ -275,11 +301,12 @@ const List1 = () => {
             position: "absolute",
             top: 0,
             left: 0,
-            width: "100%",
-            height: "100%",
-            background: "rgba(255, 255, 255, 0.95)",
-            zIndex: 3,
-            display: showCategory ? "block" : "none",
+           width : '100%',
+           height: '1450px',
+            background: "white",
+            zIndex: 4,
+            
+            
           }}
         >
           <Category />
