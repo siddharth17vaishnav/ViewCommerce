@@ -1,31 +1,23 @@
-import React from 'react'
-import { Grid, Container, Typography } from '@material-ui/core'
-
+import { Grid, Container  } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import dribble from '../../assets/dribbble.png'
 import facebook from '../../assets/facebook.png'
 import linkedin from '../../assets/linkedin.png'
 import twitter from '../../assets/twitter.png'
+import { Typography,Box } from '@mui/material'
+import theme from '@/theme'
 
 interface FooterProps {}
 
 const useStyles = makeStyles(theme => ({
   mainFooter: {
     backgroundColor: '#FFFFFF', // White color
-    marginTop: 'calc(10% + 60px)',
+    marginTop: '20px',
     width: '100%',
-    bottom: 0,
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(4),
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    maxWidth: '1480px',
   },
   
   contentContainer: {
     width: '100%',
-    padding: ` ${theme.spacing(2)}px`
-    
   },
   socialIcons: {
     display: 'flex',
@@ -34,16 +26,15 @@ const useStyles = makeStyles(theme => ({
   },
   list: {
     listStyle: 'none',
-    padding: '6px',
+    padding: '1.5px',
     margin: 0,
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(2.3),
     '& li': {
       marginBottom: theme.spacing(1),
       cursor: 'pointer'
     }
   },
   footerText: {
-    marginTop: theme.spacing(2),
     fontFamily: 'Poppins'
   }
 }))
@@ -53,13 +44,13 @@ const Footer: React.FC<FooterProps> = () => {
 
   return (
     <div className={classes.mainFooter}>
-      <Container maxWidth={false}>
-        <div className={classes.contentContainer}>
+      <Container>
+        <Box className={classes.contentContainer}>
           <Grid container spacing={6}>
-            <Grid item xs={6} sm={6} md={4}>
-              <Typography variant="h4">E-commerce</Typography>
-              
-              <div className={classes.socialIcons}>
+            <Grid item xs={12} sm={12} md={4}>
+              <Typography sx={{color:'orange',fontSize:24,fontWeight:600}}>E-commerce</Typography>
+              <Typography sx={{color:'black',fontSize:14,fontWeight:200, maxWidth:300, marginTop: '16px'}}>Office No. 18, Ashirwad Shopping, Ashirwad Township 1, Udhna, Surat-394210</Typography>
+              <Box className={classes.socialIcons}>
                 <a href="https://Linkedin.com/">
                   <img src={linkedin} alt="LinkedIn" width={30} height={30} />
                 </a>
@@ -72,7 +63,7 @@ const Footer: React.FC<FooterProps> = () => {
                 <a href="mailto:ashu.chauhan018@gmail.com">
                   <img src={facebook} alt="Facebook" width={30} height={30} />
                 </a>
-              </div>
+              </Box>
             </Grid>
 
             <Grid item xs={12} sm={6} md={2}>
@@ -96,12 +87,13 @@ const Footer: React.FC<FooterProps> = () => {
               <ul className={classes.list}>
                 <li>Help Center</li>
                 <li>Trust and Safety</li>
-                <li>Privacy Settings</li>
+                <li>Privacy Policy</li>
+                <li>Terms of Use</li>
               </ul>
             </Grid>
             
             <Grid item xs={12} sm={6} md={2}>
-              <Typography variant="h6">Make Money with Us</Typography>
+              <Typography variant="h6" style={{whiteSpace:'nowrap'}}>Make Money with Us</Typography>
               <ul className={classes.list}>
                 <li>Sell on our site</li>
                 <li>Sell under our site Accelerator</li>
@@ -109,12 +101,15 @@ const Footer: React.FC<FooterProps> = () => {
               </ul>
             </Grid>
           </Grid>
-        </div>
+        </Box>
         <hr></hr>
+        <Box sx={{marginBottom: 2,marginTop:1}}>
         <Typography variant="body2" className={classes.footerText}>
-          &copy; {new Date().getFullYear()} E-commerce. All rights reserved.
+          &copy; {new Date().getFullYear()} Uprising Tradex LLP. All rights reserved.
         </Typography>
+        </Box>
       </Container>
+      
     </div>
   )
 }

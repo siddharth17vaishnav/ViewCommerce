@@ -23,7 +23,7 @@ const Home = () => {
           <Route path="/products/P1" element={<P1 />} />
         </Routes>
       </div>
-    <ProductDetail />
+    {/* <ProductDetail />
       <List1 />
       <Congrats />
       <Businessdetail />
@@ -34,7 +34,7 @@ const Home = () => {
       <ForgotPassword />
       <Login />
       <Signin />
-      <CardList />
+      <CardList /> */}
       <Footer />
     </>
   );
