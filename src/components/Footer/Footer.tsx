@@ -11,7 +11,7 @@ interface FooterProps {}
 
 const useStyles = makeStyles(theme => ({
   mainFooter: {
-    backgroundColor: '#FFFFFF', // White color
+    backgroundColor: '#FFFFFF',
     marginTop: '20px',
     width: '100%',
   },
