@@ -5,7 +5,6 @@ import facebook from '../../assets/facebook.png'
 import linkedin from '../../assets/linkedin.png'
 import twitter from '../../assets/twitter.png'
 import { Typography,Box } from '@mui/material'
-import theme from '@/theme'
 
 interface FooterProps {}
 
@@ -49,7 +48,8 @@ const Footer: React.FC<FooterProps> = () => {
           <Grid container spacing={6}>
             <Grid item xs={12} sm={12} md={4}>
               <Typography sx={{color:'orange',fontSize:24,fontWeight:600}}>E-commerce</Typography>
-              <Typography sx={{color:'black',fontSize:14,fontWeight:200, maxWidth:300, marginTop: '16px'}}>Office No. 18, Ashirwad Shopping, Ashirwad Township 1, Udhna, Surat-394210</Typography>
+              <Typography sx={{color:'Black',fontSize:16,fontWeight:600, marginTop: '12px'}}>Registered Office Address:</Typography>
+              <Typography sx={{color:'black',fontSize:14,fontWeight:200, maxWidth:300}}>Office No. 18, Ashirwad Shopping, Ashirwad Township 1, Udhna, Surat-394210</Typography>
               <Box className={classes.socialIcons}>
                 <a href="https://Linkedin.com/">
                   <img src={linkedin} alt="LinkedIn" width={30} height={30} />
@@ -93,7 +93,7 @@ const Footer: React.FC<FooterProps> = () => {
             </Grid>
             
             <Grid item xs={12} sm={6} md={2}>
-              <Typography variant="h6" style={{whiteSpace:'nowrap'}}>Make Money with Us</Typography>
+              <Typography variant="h6" style={{whiteSpace:'nowrap'}}>Make Money</Typography>
               <ul className={classes.list}>
                 <li>Sell on our site</li>
                 <li>Sell under our site Accelerator</li>
