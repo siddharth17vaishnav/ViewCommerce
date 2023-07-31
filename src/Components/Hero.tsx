@@ -27,7 +27,7 @@ const Hero = () => {
           mt: '55px',
           position: 'relative',
           width: '100% ',
-          height: '602px',
+          // height: '602px',
           px: isLargeScreen ? 4 : 0
         }}>
         <Box>

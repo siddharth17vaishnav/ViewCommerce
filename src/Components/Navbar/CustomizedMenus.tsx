@@ -3,7 +3,7 @@ import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { Box, useMediaQuery } from '@mui/material'
-import myList from './NavbarList'
+import { menuItems } from './NavbarList'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Searchicon from '../Buttons/Searchicon'
 import AllButton from '../Buttons/AllButton'
@@ -39,7 +39,7 @@ export default function BasicMenu() {
           ml: isLargeScreen ? 6 : 0,
           mt: isLargeScreen ? 0 : 2
         }}>
-        {myList.menuItems.map((item, ind) => {
+        {menuItems.map((item, ind) => {
           return (
             // <Link to={item.title === 'Home' ? `/` : `${item.title}`}>
             <Button
@@ -83,23 +83,24 @@ export default function BasicMenu() {
           MenuListProps={{
             'aria-labelledby': 'basic-button'
           }}>
-          {myList.menuItems.map(item => {
+          {menuItems.map(item => {
             const title = item.title
             if (title === selectedButton) {
               return item.submenu?.map(submenuItems => {
                 return (
-                  <MenuItem
+                  <Box
                     sx={{
-                      pl: 1,
                       '& :nth-of-type(1)': {
                         textDecoration: 'none',
                         color: '#000000'
                       }
-                    }}
-                    key={title}
-                    onClick={handleClose}>
-                    <Link to={submenuItems.title}> {submenuItems.title}</Link>
-                  </MenuItem>
+                    }}>
+                    <Link to={submenuItems.title}>
+                      <MenuItem sx={{ pl: 1 }} key={title} onClick={handleClose}>
+                        {submenuItems.title}
+                      </MenuItem>
+                    </Link>
+                  </Box>
                 )
               })
             }

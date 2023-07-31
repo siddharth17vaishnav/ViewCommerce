@@ -7,7 +7,7 @@ import img6 from '../../assets/images/order/image 39.png'
 
 import { image, reviewDetails } from '@/Components/Types'
 
-const order: image[] = [
+export const order: image[] = [
   {
     img: img1
   },
@@ -28,7 +28,7 @@ const order: image[] = [
     img: img6
   }
 ]
-const modernShoesProperties1 = [
+export const modernShoesProperties1 = [
   {
     name: 'Type:',
     value: 'Modern Shoes'
@@ -42,7 +42,7 @@ const modernShoesProperties1 = [
     value: 'Modern nice'
   }
 ]
-const modernShoesProperties2 = [
+export const modernShoesProperties2 = [
   {
     name: 'Country of Origin:',
     value: 'Bangladesh, Vietnam, China, United States'
@@ -56,7 +56,7 @@ const modernShoesProperties2 = [
     value: '2 years full warranty'
   }
 ]
-const modernShoesPropertiesSm = [
+export const modernShoesPropertiesSm = [
   {
     name: 'Type:',
     value: 'Modern Shoes'
@@ -75,7 +75,7 @@ const modernShoesPropertiesSm = [
   }
 ]
 
-const Reviews: reviewDetails[] = [
+export const review: reviewDetails[] = [
   {
     id: 1,
     numberOfLikes: 0,
@@ -125,11 +125,3 @@ const Reviews: reviewDetails[] = [
     text2: 'Certified Buyer, Bengaluru'
   }
 ]
-
-export default {
-  order,
-  modernShoesPropertiesSm,
-  modernShoesProperties1,
-  modernShoesProperties2,
-  Reviews
-}

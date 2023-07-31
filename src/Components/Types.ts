@@ -75,3 +75,14 @@ export interface CardDetailsForOrderdetails {
 export interface CardDetailsForOrderdetails1 {
   item: string
 }
+export interface CartItem {
+  id: number
+  img: string
+  name: string
+  desc: string
+  seller: string
+  amount: number
+  totalAmount: number
+  quantity: number
+  favorite: boolean
+}

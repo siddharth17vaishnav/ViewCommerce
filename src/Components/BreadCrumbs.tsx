@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import myList from '../Components/Navbar/NavbarList'
+import { menuItems } from '../Components/Navbar/NavbarList'
 import { useEffect, useState } from 'react'
 import * as React from 'react'
 import Typography from '@mui/material/Typography'
@@ -12,7 +12,7 @@ const BreadCrumbs = () => {
   const location = useLocation()
   const path = location.pathname.replace(/\//g, '')
   useEffect(() => {
-    myList.menuItems.map(items =>
+    menuItems.map(items =>
       items.submenu?.find(item => {
         if (item.title === path) {
           setFirstPath(items.title)

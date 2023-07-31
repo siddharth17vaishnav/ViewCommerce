@@ -13,7 +13,7 @@ import 'swiper/css/navigation'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 
 import { SwipeProps } from '../Types'
-import CardDetails from '../Cards/CardDetails'
+import { cardSwiper } from '../Cards/CardDetails'
 
 const Swipe: React.FC<SwipeProps> = ({ swiperContent, renderSlideContent }) => {
   const theme = useTheme()
@@ -24,25 +24,19 @@ const Swipe: React.FC<SwipeProps> = ({ swiperContent, renderSlideContent }) => {
   return (
     <Swiper
       slidesPerView={
-        swiperContent === CardDetails.cardSwiper
-          ? isSmallScreen
-            ? 1
-            : isMediumScreen
-            ? 2
-            : 3
-          : 'auto'
+        swiperContent === cardSwiper ? (isSmallScreen ? 1 : isMediumScreen ? 2 : 3) : 'auto'
       }
-      spaceBetween={swiperContent === CardDetails.cardSwiper ? 20 : 0}
-      centeredSlides={swiperContent === CardDetails.cardSwiper ? false : true}
+      spaceBetween={swiperContent === cardSwiper ? 20 : 0}
+      centeredSlides={swiperContent === cardSwiper ? false : true}
       autoplay={{
         delay: 3000,
         disableOnInteraction: false
       }}
-      navigation={swiperContent === CardDetails.cardSwiper ? true : false}
+      navigation={swiperContent === cardSwiper ? true : false}
       pagination={{
         // dynamicBullets: swiperContent ? true : false,
         clickable: true,
-        ...(swiperContent === CardDetails.cardSwiper
+        ...(swiperContent === cardSwiper
           ? {
               renderBullet: function (index, className) {
                 return `<span class="${className}" style="background-color: transparent;"></span>`
@@ -70,7 +64,7 @@ const Swipe: React.FC<SwipeProps> = ({ swiperContent, renderSlideContent }) => {
       // onSlideChange={handleSlideChange}
     >
       {swiperContent?.map(content => (
-        <SwiperSlide key={swiperContent === CardDetails.cardSwiper ? content.cardNo : content.id}>
+        <SwiperSlide key={swiperContent === cardSwiper ? content.cardNo : content.id}>
           {renderSlideContent && renderSlideContent(content)}
         </SwiperSlide>
       ))}

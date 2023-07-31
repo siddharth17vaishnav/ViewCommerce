@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia'
 // import theme from '../../theme/index'
 
 import Grid from '@mui/material/Unstable_Grid2' // Grid version 2
-import CardDetails from '../Cards/CardDetails'
+import { phoneCards } from '../Cards/CardDetails'
 
 const theme = createTheme({
   breakpoints: {
@@ -29,7 +29,7 @@ const PhoneCards = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ mb: '108px', mx: 4 }}>
+      <Box sx={{ mx: 4 }}>
         <Box
           sx={{
             display: 'flex',
@@ -80,7 +80,7 @@ const PhoneCards = () => {
           </Button>
         </Box>
         <Grid container spacing={2}>
-          {CardDetails.phoneCards.map((items, ind) => {
+          {phoneCards.map((items, ind) => {
             const { cardNo, img, text, amount, oldAmount, save, width, height } = items
             return (
               <Grid xs={12} sm={6} md={4} lg={2.4} key={`${ind}-${cardNo}`}>

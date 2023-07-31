@@ -4,6 +4,7 @@ import SubNavbar from './Components/Navbar/SubNavbar'
 import { Route, Routes } from 'react-router-dom'
 import Home from './sections/Home'
 import Order from './sections/Order/Order'
+import MyCart from './Components/Order/Cart/MyCart'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="Order" element={<Order />} />
+        <Route path="My Cart" element={<MyCart />} />
       </Routes>
     </Box>
   )

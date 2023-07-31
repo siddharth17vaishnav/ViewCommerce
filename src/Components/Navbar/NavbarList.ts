@@ -5,7 +5,7 @@ import MessageIcon from '@mui/icons-material/Message'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
-const menuItems: MenuItem[] = [
+export const menuItems: MenuItem[] = [
   {
     title: 'Home',
     submenu: [
@@ -63,9 +63,9 @@ const menuItems: MenuItem[] = [
   }
 ]
 
-const topOptions: string[] = ['Customer Service', 'Gift boxes', 'Today’s deals', 'Help']
+export const topOptions: string[] = ['Customer Service', 'Gift boxes', 'Today’s deals', 'Help']
 
-const sideMenuItems: Item[] = [
+export const sideMenuItems: Item[] = [
   {
     icon: Person2Icon,
     text: 'Profile'
@@ -84,4 +84,4 @@ const sideMenuItems: Item[] = [
   }
 ]
 
-export default { menuItems, topOptions, sideMenuItems }
+// export default { menuItems, topOptions, sideMenuItems }

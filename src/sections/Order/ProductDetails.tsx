@@ -6,7 +6,7 @@ import CheckIcon from '@mui/icons-material/Check'
 import Divider from '@mui/material/Divider'
 import BasicTable from './BasicTable'
 
-import CardDetailsForOrders from './OrderCards/CardDetailsForOrders'
+import { cardsDetails2 } from './OrderCards/CardDetailsForOrders'
 import CardsForOrder from './OrderCards/CardsForOrder'
 
 const theme = createTheme({
@@ -106,7 +106,7 @@ const ProductDetails = () => {
                     alignItems: 'center',
                     gap: 1
                   }}>
-                  {CardDetailsForOrders.cardsDetails2.map((x, ind) => {
+                  {cardsDetails2.map((x, ind) => {
                     const { item } = x
                     return (
                       <Box key={ind} sx={{ display: 'flex' }}>

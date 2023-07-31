@@ -1,11 +1,11 @@
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
-import myList from './NavbarList'
+import { topOptions } from './NavbarList'
 import { useMediaQuery } from '@mui/material'
 
 const TopOptions = () => {
   const isLargeScreen = useMediaQuery('(min-width:1200px)')
 
-  let navItem = myList.topOptions.map(item => {
+  let navItem = topOptions.map(item => {
     return (
       <ListItemButton
         key={item}

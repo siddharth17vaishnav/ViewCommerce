@@ -4,6 +4,7 @@ import {
   CardMedia,
   Container,
   IconButton,
+  TextField,
   ThemeProvider,
   Typography,
   createTheme,
@@ -11,12 +12,12 @@ import {
 } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
-import order from './OrderArray'
 import CheckIcon from '@mui/icons-material/Check'
 import StarIcon from '@mui/icons-material/Star'
 import MessageIcon from '@mui/icons-material/Message'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
@@ -24,7 +25,12 @@ import Divider from '@mui/material/Divider'
 import img from '../../assets/images/order/image 34.png'
 import { useEffect, useRef, useState } from 'react'
 import { scroller } from 'react-scroll'
-import OrderArray from './OrderArray'
+import {
+  modernShoesProperties1,
+  modernShoesProperties2,
+  modernShoesPropertiesSm,
+  order
+} from './OrderArray'
 import AllButton from '../../Components/Buttons/AllButton'
 import { Link } from 'react-router-dom'
 import BreadCrumbs from '../../Components/BreadCrumbs'
@@ -52,6 +58,7 @@ const Order = () => {
   const [displayImage, setDisplayImage] = useState('')
   const [clickedIndex, setClickedIndex] = useState(-1)
   const [textTruncate, setTextTruncate] = useState(false)
+  const [favorite, setFavorite] = useState(false)
 
   const [ProductDetailsOrReview, setProductDetailsOrReview] = useState(true)
 
@@ -68,11 +75,11 @@ const Order = () => {
 
   useEffect(() => {
     setDisplayText(text.length < lengthOfText ? text : `${textSlice}...`)
-    setDisplayImage(OrderArray.order[0].img)
+    setDisplayImage(order[0].img)
   }, [])
 
   const handleImage = (ind: number) => {
-    setDisplayImage(OrderArray.order[ind].img)
+    setDisplayImage(order[ind].img)
     setClickedIndex(ind)
   }
 
@@ -92,19 +99,22 @@ const Order = () => {
     scrollToDiv()
   }
   const handleImageClickForward = () => {
-    const currentIndex = OrderArray.order.findIndex(item => item.img === displayImage)
+    const currentIndex = order.findIndex(item => item.img === displayImage)
 
-    currentIndex === OrderArray.order.length - 1
-      ? setDisplayImage(OrderArray.order[0].img)
-      : setDisplayImage(OrderArray.order[currentIndex + 1].img)
+    currentIndex === order.length - 1
+      ? setDisplayImage(order[0].img)
+      : setDisplayImage(order[currentIndex + 1].img)
   }
 
   const handleImageClickBack = () => {
-    const currentIndex = OrderArray.order.findIndex(item => item.img === displayImage)
+    const currentIndex = order.findIndex(item => item.img === displayImage)
     console.log(currentIndex)
     currentIndex === 0
-      ? setDisplayImage(OrderArray.order[OrderArray.order.length - 1].img)
-      : setDisplayImage(OrderArray.order[currentIndex - 1].img)
+      ? setDisplayImage(order[order.length - 1].img)
+      : setDisplayImage(order[currentIndex - 1].img)
+  }
+  const handleFavorite = () => {
+    setFavorite(!favorite)
   }
   const scrollToDiv = () => {
     myRef.current?.scrollIntoView({
@@ -112,9 +122,7 @@ const Order = () => {
     })
   }
 
-  const propertiesArray = isSmallScreen
-    ? OrderArray.modernShoesPropertiesSm
-    : OrderArray.modernShoesProperties1
+  const propertiesArray = isSmallScreen ? modernShoesPropertiesSm : modernShoesProperties1
 
   return (
     <ThemeProvider theme={theme}>
@@ -122,14 +130,14 @@ const Order = () => {
         <BreadCrumbs />
       </Box>
       <Typography component="div" sx={{ mx: isSmallScreen ? 0 : 4 }}>
-        <Grid>
+        <Grid sx={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
           <Paper
             elevation={isSmallScreen ? 0 : 1}
             sx={{
               // background: 'white',
               px: 2,
-              py: 3,
-              mb: isSmallScreen ? 0 : 5
+              py: 3
+              // mb: isSmallScreen ? 0 : 5
               // border: '1.24px solid #DEE2E7'
             }}>
             <Box sx={{ borderRadius: '3px' }}>
@@ -195,7 +203,7 @@ const Order = () => {
                       cursor: 'pointer'
                       // overflowY: isSmallScreen ? 'scroll' : null
                     }}>
-                    {OrderArray.order.map((item, ind) => {
+                    {order.map((item, ind) => {
                       const { img } = item
                       return (
                         <CardMedia
@@ -353,15 +361,26 @@ const Order = () => {
                           alignItems: 'center',
                           justifyContent: 'center'
                         }}>
-                        <IconButton>
-                          <FavoriteBorderIcon
-                            sx={{
-                              // border: '1px solid #DEE2E7',
-                              width: '24px',
-                              height: '24px',
-                              color: '#0D6EFD'
-                            }}
-                          />
+                        <IconButton onClick={handleFavorite}>
+                          {favorite ? (
+                            <FavoriteIcon
+                              sx={{
+                                // border: '1px solid #DEE2E7',
+                                width: '24px',
+                                height: '24px',
+                                color: '#0D6EFD'
+                              }}
+                            />
+                          ) : (
+                            <FavoriteBorderIcon
+                              sx={{
+                                // border: '1px solid #DEE2E7',
+                                width: '24px',
+                                height: '24px',
+                                color: '#0D6EFD'
+                              }}
+                            />
+                          )}
                         </IconButton>
                       </Paper>
                     </Box>
@@ -435,35 +454,26 @@ const Order = () => {
                             mt: 1
                           }}>
                           {text.length > lengthOfText && (
-                            <Button
-                              component="p"
-                              onClick={handleText}
-                              sx={{
-                                color: '#0D6EFD',
-                                fontWeight: 500,
-                                fontSize: '19px',
-                                cursor: 'pointer'
-                              }}>
-                              {textTruncate === true ? ` Read less` : ` Read more`}
-                            </Button>
+                            <>
+                              {textTruncate === true ? (
+                                <AllButton onClick={handleText} text="Read less" />
+                              ) : (
+                                <AllButton onClick={handleText} text="Read more" />
+                              )}
+                            </>
                           )}
-                          <Button
-                            onClick={handleProductDetailsAndReviews}
-                            sx={{
-                              ml: 'auto',
 
-                              '& :nth-of-type(1)': {
-                                fontSize: '15px',
-                                fontWeight: 400,
-                                color: '#0A74FF'
-                              }
-                            }}>
-                            {ProductDetailsOrReview ? (
-                              <Link to="">View Reviews</Link>
-                            ) : (
-                              <Link to="">View Details</Link>
-                            )}
-                          </Button>
+                          {ProductDetailsOrReview ? (
+                            <AllButton
+                              onClick={handleProductDetailsAndReviews}
+                              text="View Reviews"
+                            />
+                          ) : (
+                            <AllButton
+                              onClick={handleProductDetailsAndReviews}
+                              text="View Details"
+                            />
+                          )}
                         </Box>
                       </Box>
                     </Typography>
@@ -477,7 +487,7 @@ const Order = () => {
                         flexDirection: 'column',
                         gap: 4
                       }}>
-                      {OrderArray.modernShoesProperties2.map((properties, ind) => {
+                      {modernShoesProperties2.map((properties, ind) => {
                         const { name, value } = properties
                         return (
                           <Box
@@ -537,29 +547,28 @@ const Order = () => {
                           }}>
                           Delivery
                         </Typography>
-                        <Box sx={{ display: 'flex', gap: 2, mb: 3, mt: 1 }}>
-                          <Typography
-                            component="p"
+                        <Box sx={{ display: 'flex', alignItems: 'end', gap: 2, mb: 3, mt: 1 }}>
+                          <Box
+                            component="form"
                             sx={{
+                              '& > :not(style)': {},
                               '& > :first-of-type': {
                                 color: '#C9C9C9',
-                                borderBottom: '2px solid #C9C9C9',
+                                // borderBottom: '2px solid #C9C9C9',
                                 fontWeight: 400,
                                 fontSize: isSmallScreen ? '15px' : '18px'
                               }
-                            }}>
-                            <Link to="">Enter delivery code</Link>
-                          </Typography>
-                          <Typography
-                            component="p"
-                            sx={{
-                              color: '#0A74FF',
-                              cursor: 'pointer',
-                              fontWeight: 400,
-                              fontSize: isSmallScreen ? '15px' : '18px'
-                            }}>
-                            Check
-                          </Typography>
+                            }}
+                            noValidate
+                            autoComplete="off">
+                            <TextField
+                              id="standard-basic"
+                              label="Enter delivery code"
+                              variant="standard"
+                            />
+                          </Box>
+
+                          <AllButton text="Check" />
                         </Box>
                       </Box>
                       <Divider sx={{ background: '#E0E0E0', my: 2 }} />
@@ -617,13 +626,20 @@ const Order = () => {
                   </Paper>
                   <Button
                     component="div"
+                    onClick={handleFavorite}
                     sx={{
                       display: isSmallScreen ? 'none' : 'flex',
                       justifyContent: 'center',
                       mt: 2.5,
                       gap: 1
                     }}>
-                    <FavoriteBorderIcon sx={{ color: '#0D6EFD', width: '24px', height: '24px' }} />
+                    {favorite ? (
+                      <FavoriteIcon sx={{ color: '#0D6EFD', width: '24px', height: '24px' }} />
+                    ) : (
+                      <FavoriteBorderIcon
+                        sx={{ color: '#0D6EFD', width: '24px', height: '24px' }}
+                      />
+                    )}
                     <Typography
                       component="p"
                       sx={{

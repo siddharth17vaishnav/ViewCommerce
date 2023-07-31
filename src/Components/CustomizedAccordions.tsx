@@ -4,7 +4,7 @@ import MuiAccordion, { AccordionProps } from '@mui/material/Accordion'
 import MuiAccordionSummary, { AccordionSummaryProps } from '@mui/material/AccordionSummary'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
-import myList from './Navbar/NavbarList'
+import { menuItems } from './Navbar/NavbarList'
 import React, { useRef } from 'react'
 import { ListItemButton } from '@mui/material'
 import { Link } from 'react-router-dom'
@@ -60,7 +60,7 @@ const CustomizedAccordionst: React.FC<MyComponentProps> = ({ handleClose }) => {
 
   return (
     <div>
-      {myList.menuItems.map((item, ind) => {
+      {menuItems.map((item, ind) => {
         const title = item.title
         return (
           <Accordion

@@ -5,11 +5,13 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import ThumbDownIcon from '@mui/icons-material/ThumbDown'
 import MoreVertTwoToneIcon from '@mui/icons-material/MoreVertTwoTone'
-import OrderArray from './OrderArray'
+import { review } from './OrderArray'
 import CardsForOrder from './OrderCards/CardsForOrder'
 import Grid from '@mui/material/Grid'
 
 import { useState } from 'react'
+// import AllButton from '..//Components/Buttons/AllButton'
+import AllButton from '../../Components/Buttons/AllButton'
 
 const theme = createTheme({
   breakpoints: {
@@ -36,7 +38,7 @@ const Reviews = () => {
   const [likesAndDislikes, setlikesAndDislikes] = useState(true)
 
   const handleAddLikes = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    const searchId = OrderArray.Reviews.find(
+    const searchId = review.find(
       item => item.id === parseInt(e.currentTarget.parentElement?.parentElement?.id ?? '')
     )
 
@@ -44,7 +46,7 @@ const Reviews = () => {
     setlikesAndDislikes(!likesAndDislikes)
   }
   const handleDisLikes = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    const searchId = OrderArray.Reviews.find(
+    const searchId = review.find(
       item => item.id === parseInt(e.currentTarget.parentElement?.parentElement?.id ?? '')
     )
     searchId ? searchId.numberOfDisLikes++ : 0
@@ -108,7 +110,8 @@ const Reviews = () => {
                   75 ratings and 18 reviews
                 </Typography>
               </Box>
-              <Button
+              <AllButton text="Rate Product" />
+              {/* <Button
                 sx={{
                   background: '#3F65EA',
                   color: '#FFFFFF',
@@ -121,7 +124,7 @@ const Reviews = () => {
                   // right: 0
                 }}>
                 Rate Product
-              </Button>
+              </Button> */}
             </Typography>
             <Box
               sx={{
@@ -132,7 +135,7 @@ const Reviews = () => {
                 display: isSmallScreen ? null : 'none'
               }}></Box>
 
-            {OrderArray.Reviews.map((items, ind) => {
+            {review.map((items, ind) => {
               const {
                 rating,
                 coment1,

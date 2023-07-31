@@ -51,7 +51,7 @@ import image3 from '../../assets/images/image 3.png'
 import image4 from '../../assets/images/image 4.png'
 import image5 from '../../assets/images/image 5.png'
 
-let cards = [
+export const mycards = [
   {
     cardNo: 1,
     color: '#FFE4BD',
@@ -85,7 +85,7 @@ let cards = [
   }
 ]
 
-let images = [
+export const images = [
   {
     img: frame8,
     text: 'Clothing & Shoes'
@@ -96,7 +96,7 @@ let images = [
   }
 ]
 
-let phoneCards = [
+export const phoneCards = [
   {
     cardNo: 1,
     width: '105px',
@@ -149,7 +149,7 @@ let phoneCards = [
     save: '₹' + 18000
   }
 ]
-let cardSwiper = [
+export const cardSwiper = [
   {
     cardNo: 1,
     // shadow: ' 5px 5px 13px 0px #E4D89A',
@@ -217,4 +217,4 @@ let cardSwiper = [
   }
 ]
 
-export default { cardSwiper, cards, images, phoneCards }
+// export default { cardSwiper, cards, images, phoneCards }

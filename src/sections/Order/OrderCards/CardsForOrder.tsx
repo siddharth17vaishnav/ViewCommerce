@@ -10,7 +10,7 @@ import {
   useMediaQuery
 } from '@mui/material'
 // import cardsDetails from './CardDetailsForOrders'
-import CardDetailsForOrders from './CardDetailsForOrders'
+import { cardsDetails } from './CardDetailsForOrders'
 
 const theme = createTheme({
   breakpoints: {
@@ -49,7 +49,7 @@ const CardsForOrder: React.FC<CardsForOrderProps> = ({ isReview }) => {
           gap: 3,
           justifyContent: 'space-evenly'
         }}>
-        {CardDetailsForOrders.cardsDetails.map((items, ind) => {
+        {cardsDetails.map((items, ind) => {
           const { img1, img2, img3, icon, brand, Discount, backGroundColor, color } = items
           return (
             <Box sx={{}}>

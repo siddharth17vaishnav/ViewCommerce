@@ -13,7 +13,7 @@ import img9 from '../../../assets/images/order/OrderCards/image 9-2.png'
 
 import { CardDetailsForOrderdetails, CardDetailsForOrderdetails1 } from '@/Components/Types'
 
-const cardsDetails: CardDetailsForOrderdetails[] = [
+export const cardsDetails: CardDetailsForOrderdetails[] = [
   {
     img1: img1,
     img2: img2,
@@ -47,7 +47,7 @@ const cardsDetails: CardDetailsForOrderdetails[] = [
   }
 ]
 
-const cardsDetails2: CardDetailsForOrderdetails1[] = [
+export const cardsDetails2: CardDetailsForOrderdetails1[] = [
   {
     item: ' Some great feature name here'
   },
@@ -63,4 +63,4 @@ const cardsDetails2: CardDetailsForOrderdetails1[] = [
   }
 ]
 
-export default { cardsDetails, cardsDetails2 }
+// export default { cardsDetails, cardsDetails2 }
