@@ -13,7 +13,7 @@ export const menuItems: MenuItem[] = [
         title: 'Order'
       },
       {
-        title: 'web design'
+        title: 'AddPayment'
       }
     ]
   },
@@ -80,7 +80,7 @@ export const sideMenuItems: Item[] = [
   },
   {
     icon: ShoppingCartIcon,
-    text: 'My Cart'
+    text: 'MyCart'
   }
 ]
 

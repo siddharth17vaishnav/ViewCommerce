@@ -1,6 +1,7 @@
 import Button, { ButtonProps } from '@mui/material/Button'
 import { useMediaQuery, SxProps } from '@mui/material'
 import theme from '@/theme'
+import { addAndPaymentArr } from '../../sections/Order/Payment/AddAndPaymentArr'
 
 interface AllButtonProps extends ButtonProps {
   text: string
@@ -52,7 +53,8 @@ const AllButton: React.FC<AllButtonProps> = ({ text, sx, ...props }) => {
       color: '#FFFFFF',
       Padding: '0px, 20px, 0px, 20px',
       width: '100%',
-      background: 'linear-gradient(to bottom, #127FFF, #0067FF)'
+      background: 'linear-gradient(to bottom, #127FFF, #0067FF)',
+      textTransform: 'none'
     }
   }
 
@@ -197,6 +199,71 @@ const AllButton: React.FC<AllButtonProps> = ({ text, sx, ...props }) => {
       }
     }
   }
+  if (text === 'EDIT') {
+    sx = {
+      ml: 'auto',
+      fontSize: isSmallScreen ? '14px' : '18px',
+      fontWeight: 500,
+      color: '#1877F2',
+      textTransform: 'none',
+      position: isSmallScreen ? null : 'absolute',
+      top: 0,
+      right: 0,
+      bottom: isSmallScreen ? 0 : null
+
+      // '&:hover': {
+      //   border: '1px solid #00B517',
+      //   color: '#00B517'
+      // }
+    }
+  }
+  if (text === 'DELIVERY HERE') {
+    sx = {
+      background: '#0E79FF',
+      fontSize: isSmallScreen ? '14px' : '18px',
+      fontWeight: 500,
+      color: '#FFF',
+      fontFamily: 'Poppins',
+      textTransform: 'none',
+      '&:hover': {
+        border: '1px solid #0E79FF',
+        color: '#0E79FF',
+        background: 'transparent'
+      }
+    }
+  }
+
+  if (text === 'Add-New' || text === 'Add-New card') {
+    sx = {
+      color: '#FFF',
+      fontSize: isSmallScreen ? '12px' : '14px',
+      fontFamily: 'Poppins',
+      fontWeight: 400,
+      background: '#0E79FF',
+      textTransform: 'none',
+      '&:hover': {
+        border: '1px solid #0E79FF',
+        color: '#0E79FF',
+        background: 'transparent'
+      }
+    }
+  }
+  if (text === 'Continue') {
+    sx = {
+      color: '#FFF',
+      fontSize: '14px',
+      fontFamily: 'Poppins',
+      fontWeight: 400,
+      background: '#0E79FF',
+      textTransform: 'none',
+      '&:hover': {
+        border: '1px solid #0E79FF',
+        color: '#0E79FF',
+        background: 'transparent'
+      }
+    }
+  }
+
   return (
     <Button {...props} sx={sx}>
       {text}

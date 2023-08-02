@@ -20,7 +20,12 @@ import {
   orderAndCartsCards,
   orderAndCartsCards2,
   orderAndCartsCards3
-} from '../Order/Cart/CartAndOrder/OrderAndCartArray'
+} from '../../sections/Order/Cart/CartAndOrder/OrderAndCartArray'
+// import {
+//   orderAndCartsCards,
+//   orderAndCartsCards2,
+//   orderAndCartsCards3
+// } from '../Order/Cart/CartAndOrder/OrderAndCartArray'
 
 const Cards: React.FC<CardsProps> = ({ cards, images }) => {
   const theme = useTheme()
@@ -28,7 +33,6 @@ const Cards: React.FC<CardsProps> = ({ cards, images }) => {
   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'))
   const isXLargeScreen = useMediaQuery(theme.breakpoints.up('lg'))
-
   const renderCard = (card: SwiperContent) => {
     const { cardNo, color, img, Ellipse, text, amount } = card
     if (cards !== orderAndCartsCards3) {

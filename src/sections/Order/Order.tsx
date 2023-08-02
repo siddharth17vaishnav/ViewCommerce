@@ -352,7 +352,9 @@ const Order = () => {
                       RS 1450
                     </Typography>
                     <Box sx={{ display: isSmallScreen ? 'flex' : 'none', gap: 2, my: 2 }}>
-                      <AllButton text="Buy-now" />
+                      <Link to="">
+                        <AllButton text="Buy-now" />
+                      </Link>
                       <Paper
                         sx={{
                           width: '48px',
@@ -619,8 +621,12 @@ const Order = () => {
                         </Typography>
                       </Box>
                       <Box sx={{ display: isSmallScreen ? 'none' : null }}>
-                        <AllButton text="Buy-now" />
-                        <AllButton text="Add to cart" />
+                        <Link to="">
+                          <AllButton text="Buy-now" />
+                        </Link>
+                        <Link to="">
+                          <AllButton text="Add to cart" />
+                        </Link>
                       </Box>
                     </Typography>
                   </Paper>
@@ -689,13 +695,7 @@ const Order = () => {
                   Reviews
                 </Button>
               </Box>
-              <Box
-                sx={{
-                  width: '100%',
-                  height: '1px',
-                  background: '#D7D7D7',
-                  display: isSmallScreen ? 'none' : null
-                }}></Box>
+              <Divider sx={{ background: '#D7D7D7', display: isSmallScreen ? 'none' : null }} />
             </Paper>
 
             <Box>{ProductDetailsOrReview ? <ProductDetails /> : <Reviews />}</Box>

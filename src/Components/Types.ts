@@ -86,3 +86,18 @@ export interface CartItem {
   quantity: number
   favorite: boolean
 }
+export interface DeliveryItem {
+  name: string
+  number: number
+  text: string
+  hover: boolean
+}
+export interface paymentItem {
+  img: string
+  cardNumber: string
+  option1: string
+  option2: string
+  width: string
+  height: string
+  hover: boolean
+}

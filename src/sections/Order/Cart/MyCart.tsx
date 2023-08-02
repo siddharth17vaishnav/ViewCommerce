@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 
 import {
   Box,
@@ -11,10 +11,11 @@ import {
   createTheme,
   IconButton,
   Icon,
-  CardContent
+  CardContent,
+  Divider
 } from '@mui/material'
 
-import AllButton from '../../Buttons/AllButton'
+// import AllButton from '../../Buttons/AllButton'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
@@ -37,7 +38,19 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import Cards from '../../../Components/Cards/Cards'
 import img12 from '../../../assets/images/Order&Cart/unsplash2.png'
 import { mycards, images } from '../../../Components/Cards/CardDetails'
+import AllButton from '../../../Components/Buttons/AllButton'
 import { CartItem } from '../../../Components/Types'
+import Checkout from '../Checkout'
+import {
+  UserArray,
+  UserDiscount,
+  UserHandleChange,
+  UserHandleDelete,
+  UserHandleDeleteAll,
+  UserSubTotal,
+  UserTax,
+  UserTotalPayable
+} from '../../../App'
 
 const theme = createTheme({
   breakpoints: {
@@ -56,10 +69,10 @@ const theme = createTheme({
 
 const MyCart = () => {
   // const [toggle, setToggle] = useState(false)
-  const [cartArr, setCartArr] = useState<CartItem[]>([])
-  const [subTotal, setSubTotal] = useState(0)
-  const [discount, setDiscount] = useState(0)
-  const [tax, setTax] = useState(0)
+  // const [cartArr, setCartArr] = useState<CartItem[]>([])
+  // const [subTotal, setSubTotal] = useState(0)
+  // const [discount, setDiscount] = useState(0)
+  // const [tax, setTax] = useState(0)
   const [toggle, setToggle] = useState(false)
   const [days, setDays] = useState(0)
   const [hours, setHours] = useState(0)
@@ -70,55 +83,46 @@ const MyCart = () => {
   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
   const isLargeScreen = useMediaQuery(theme.breakpoints.down('lg'))
 
-  let totalPayable = subTotal + tax - discount
+  const cartArr = useContext(UserArray)
+  const handleChange = useContext(UserHandleChange)
+  const handleDelete = useContext(UserHandleDelete)
+  const handleDeleteAll = useContext(UserHandleDeleteAll)
 
-  useEffect(() => {
-    setCartArr(OrderAndCart.slice())
-    totalDiscount()
-    totalTax()
-  }, [])
-  useEffect(() => {
-    sumSubTotal()
-  }, [cartArr])
-  const handleChange = (event: SelectChangeEvent<number>, id: number) => {
-    const searchCart = cartArr.find(item => item.id === id)
-    searchCart ? (searchCart.quantity = Number(event.target.value)) : null
-    searchCart ? (searchCart.amount = searchCart.totalAmount * Number(event.target.value)) : null
+  // let totalPayable = subTotal + tax - discount
+  // useEffect(() => {
+  //   setCartArr(OrderAndCart.slice())
+  //   totalDiscount()
+  //   totalTax()
+  // }, [])
+  // useEffect(() => {
+  //   sumSubTotal()
+  // }, [cartArr])
 
-    sumSubTotal()
-    totalDiscount()
-    totalTax()
-  }
-  const sumSubTotal = () => {
-    const sum = cartArr
-      .map((item, ind) => item.amount)
-      .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-    setSubTotal(sum)
-  }
-  const totalDiscount = () => {
-    setDiscount(260)
-  }
-  const totalTax = () => {
-    setTax(14)
-  }
+  // const sumSubTotal = () => {
+  //   const sum = cartArr
+  //     .map((item, ind) => item.amount)
+  //     .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+  //   setSubTotal(sum)
+  // }
+  // const totalDiscount = () => {
+  //   setDiscount(260)
+  // }
+  // const totalTax = () => {
+  //   setTax(14)
+  // }
 
-  const handleDelete = (id: number) => {
-    setCartArr(cartArr.filter(item => item.id !== id))
-  }
-
-  console.log(cartArr)
+  // console.log(cartArr)
 
   // console.log('abel')
-  const [inputValue, setInputValue] = useState('')
+  // const handleChange = (event: SelectChangeEvent<number>, id: number) => {
+  //   const searchCart = cartArr.find(item => item.id === id)
+  //   searchCart ? (searchCart.quantity = Number(event.target.value)) : null
+  //   searchCart ? (searchCart.amount = searchCart.totalAmount * Number(event.target.value)) : null
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Submitted value:', inputValue)
-  }
-
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value)
-  }
+  //   sumSubTotal()
+  //   totalDiscount()
+  //   totalTax()
+  // }
   const handleFavourite = (id: number) => {
     let searchCart = cartArr.find((item, ind) => item.id == id)
     if (searchCart) {
@@ -342,14 +346,15 @@ const MyCart = () => {
                         </Box>
                       </Typography>
                     </Box>
-                    <Box
+                    <Divider sx={{ background: '#DEE2E7', mt: isMediumScreen ? 2 : null }} />
+                    {/* <Box
                       sx={{
                         width: '100%',
                         height: '1px',
                         background: '#DEE2E7',
                         mt: isMediumScreen ? 2 : null
                         // display: isSmallScreen ? 'none' : null
-                      }}></Box>
+                      }}></Box> */}
                   </>
                 )
               })}
@@ -358,134 +363,14 @@ const MyCart = () => {
                   <AllButton text="Back to shop" startIcon={<ArrowBackIcon />} />
                 </Stack>
                 {cartArr.length !== 0 ? (
-                  <AllButton
-                    onClick={() => {
-                      setCartArr([])
-                      // setSubTotal(0)
-                      // setDiscount(0)
-                      // setTax(0)
-                    }}
-                    text="Remove all"
-                  />
+                  <AllButton onClick={handleDeleteAll} text="Remove all" />
                 ) : null}
               </Box>
             </Paper>
           </Grid>
           <Grid item xs={12} lg={4}>
-            <Paper
-              elevation={isMediumScreen ? 0 : 1}
-              sx={{ pt: 1, pb: 3, px: 2, background: isMediumScreen ? '#f8f8f8' : null }}>
-              <Typography component="p" sx={{ fontSize: '21px', color: '#505050', mb: 1 }}>
-                Have a coupon?
-              </Typography>
-
-              <form onSubmit={handleSubmit}>
-                <FormControl sx={{ width: isSmallScreen ? '170px' : null }}>
-                  <TextField
-                    sx={{}}
-                    label="Add coupon"
-                    variant="outlined"
-                    value={inputValue}
-                    onChange={handleFormChange}
-                  />
-                </FormControl>
-                <AllButton text="Apply" type="submit" />
-              </form>
-            </Paper>
-            <Paper sx={{ mt: 2, px: 2, py: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography
-                  component="p"
-                  sx={{ fontSize: isMediumScreen ? '16px' : '21px', color: '#505050' }}>
-                  Subtotal:
-                </Typography>
-                <Typography
-                  component="p"
-                  sx={{ fontSize: isMediumScreen ? '16px' : '21px', color: '#505050' }}>
-                  RS {subTotal}
-                </Typography>
-              </Box>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography
-                  component="p"
-                  sx={{ fontSize: isMediumScreen ? '16px' : '21px', color: '#505050' }}>
-                  Discount:
-                </Typography>
-                <Typography
-                  component="p"
-                  sx={{ fontSize: isMediumScreen ? '16px' : '21px', color: '#FA3434' }}>
-                  -RS {discount.toFixed(2)}
-                </Typography>
-              </Box>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography
-                  component="p"
-                  sx={{ fontSize: isMediumScreen ? '16px' : '21px', color: '#505050' }}>
-                  Tax:
-                </Typography>
-                <Typography
-                  component="p"
-                  sx={{ fontSize: isMediumScreen ? '16px' : '21px', color: '#00B517' }}>
-                  +RS {tax.toFixed(2)}
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  my: 2,
-                  width: '100%',
-                  height: '1px',
-                  background: '#DEE2E7'
-                  // display: isSmallScreen ? 'none' : null
-                }}></Box>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography
-                  component="p"
-                  sx={{
-                    fontWeight: 600,
-                    fontSize: isMediumScreen ? '18px' : '21px',
-                    color: '#1C1C1C'
-                  }}>
-                  Total:
-                </Typography>
-                <Typography
-                  component="p"
-                  sx={{
-                    fontWeight: 600,
-                    fontSize: isMediumScreen ? '18px' : '26px',
-                    color: '#1C1C1C'
-                  }}>
-                  RS {totalPayable}/-
-                </Typography>
-              </Box>
-              <Box sx={{ my: 2 }}>
-                <AllButton text="Checkout" />
-              </Box>
-              <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                {paymentMethod.map((item, ind) => {
-                  const { img, width, height } = item
-                  return (
-                    <Box
-                      key={`${item} - ${ind}`}
-                      sx={{
-                        width: '43px',
-                        height: '28px',
-                        border: '1px solid #F7F7F7',
-                        borderRadius: '1.26px',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                      }}>
-                      <CardMedia
-                        component="img"
-                        src={img}
-                        alt="payment methods"
-                        sx={{ width: `${width}`, height: `${height}` }}
-                      />
-                    </Box>
-                  )
-                })}
-              </Box>
-            </Paper>
+            {/* CHECKOUT HERE */}
+            {<Checkout />}
           </Grid>
         </Grid>
 
