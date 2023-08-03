@@ -208,8 +208,8 @@ const AllButton: React.FC<AllButtonProps> = ({ text, sx, ...props }) => {
       textTransform: 'none',
       position: isSmallScreen ? null : 'absolute',
       top: 0,
-      right: 0,
-      bottom: isSmallScreen ? 0 : null
+      right: 0
+      // bottom: isSmallScreen ? 0 : null
 
       // '&:hover': {
       //   border: '1px solid #00B517',

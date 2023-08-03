@@ -15,6 +15,12 @@ import Stack from '@mui/material/Stack'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 
+import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
+// import Typography from '@mui/material/Typography'
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+
 import { savedCards } from './AddAndPaymentArr'
 import AllButton from '../../../Components/Buttons/AllButton'
 import Radio from '@mui/material/Radio'
@@ -42,8 +48,8 @@ const theme = createTheme({
 const SimpleCollapsePayment = () => {
   const [checked, setChecked] = useState(false)
   const [copiedArr, setCopiedArr] = useState<paymentItem[]>([])
-  const [tog, setTog] = useState(false)
   const [numberOfArrayDisplayed, setNumberOfArrayDisplayed] = useState(4)
+  const [expanded, setExpanded] = useState<string | false>(false)
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
@@ -58,16 +64,26 @@ const SimpleCollapsePayment = () => {
     setNumberOfArrayDisplayed(prev => (prev === 4 ? savedCards.length : 4))
   }
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    copiedArr[Number(e.currentTarget.id)].hover = true
+  //   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  //     copiedArr[Number(e.currentTarget.id)].hover = true
 
-    setTog(!tog)
+  //     setTog(!tog)
+  //   }
+
+  //   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  //     // setIsHovered(false)
+  //     copiedArr[Number(e.currentTarget.id)].hover = false
+  //     setTog(!tog)
+  //   }
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, panel: string) => {
+    copiedArr[Number(e.currentTarget.id)].hover = true
+    setExpanded(panel)
   }
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    // setIsHovered(false)
     copiedArr[Number(e.currentTarget.id)].hover = false
-    setTog(!tog)
+    setExpanded(false)
   }
 
   return (
@@ -94,116 +110,139 @@ const SimpleCollapsePayment = () => {
 
                 return (
                   <>
-                    <Box
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
-                      key={`${img}-${ind}`}
-                      id={`${ind}`}
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'start',
-                        background: hover ? '#F0F0F0' : null,
-                        py: 3,
-                        px: 2
-                      }}>
-                      <FormControlLabel value={`details-${ind}`} control={<Radio />} label="" />
-                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mt: 1 }}>
-                        <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
-                          <CardMedia
-                            component="img"
-                            src={img}
-                            alt="bank logos"
-                            sx={{ width: `${width}`, height: `${height}` }}
-                          />
-                          <Typography
+                    <div>
+                      <Accordion
+                        key={`${img}-${ind}`}
+                        id={`${ind}`}
+                        sx={{
+                          background: hover ? '#F0F0F0' : null
+                        }}
+                        expanded={expanded === `${img}-${ind}`}
+                        onMouseEnter={e => handleMouseEnter(e, `${img}-${ind}`)}
+                        onMouseLeave={handleMouseLeave}>
+                        <AccordionSummary aria-controls="panel1bh-content" id="panel1bh-header">
+                          <Box
+                            // onMouseEnter={handleMouseEnter}
+                            // onMouseLeave={handleMouseLeave}
+
                             sx={{
-                              fontSize: isSmallScreen ? '12px' : '16px',
-                              fontFamily: 'Poppins',
-                              color: '#000'
+                              display: 'flex',
+                              alignItems: 'start',
+                              py: 3
+                              //   px: 2
                             }}>
-                            {cardNumber}
-                          </Typography>
-                        </Box>
-                        {hover && (
-                          <Box>
-                            <FormControl>
-                              <FormLabel
-                                id="demo-radio-buttons-group-label"
-                                sx={{
-                                  fontSize: '12px',
-                                  fontWeight: 500,
-                                  fontFamily: 'Poppins',
-                                  color: '#000'
-                                }}>
-                                Choose an option
-                              </FormLabel>
-                              <RadioGroup
-                                aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue={option1}
-                                name="radio-buttons-group">
-                                <FormControlLabel
-                                  value="Pay full amount of rs.6304"
-                                  control={<Radio />}
-                                  label={
-                                    <Typography
-                                      sx={{
-                                        fontSize: '12px',
-                                        fontWeight: 300,
-                                        fontFamily: 'Poppins',
-                                        color: '#000'
-                                      }}>
-                                      {option1}
-                                    </Typography>
-                                  }
+                            <FormControlLabel
+                              value={`details-${ind}`}
+                              control={<Radio />}
+                              label=""
+                            />
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mt: 1 }}>
+                              <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
+                                <CardMedia
+                                  component="img"
+                                  src={img}
+                                  alt="bank logos"
+                                  sx={{ width: `${width}`, height: `${height}` }}
                                 />
-                                <FormControlLabel
-                                  value={option2}
-                                  control={<Radio />}
-                                  label={
-                                    <Typography
-                                      sx={{
-                                        fontSize: '12px',
-                                        fontWeight: 300,
-                                        fontFamily: 'Poppins',
-                                        color: '#000'
-                                      }}>
-                                      {option2}
-                                    </Typography>
-                                  }
-                                />
-                              </RadioGroup>
-                            </FormControl>
-                            <Box
-                              sx={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                gap: 3,
-                                my: 2
-                              }}>
-                              <TextField
-                                sx={{ width: '85px' }}
-                                id="outlined-basic"
-                                size="small"
-                                label={
-                                  <Typography
-                                    component="p"
-                                    sx={{
-                                      color: '#949494',
-                                      fontFamily: 'Poppins',
-                                      fontSize: '14px'
-                                    }}>
-                                    cvv
-                                  </Typography>
-                                }
-                                variant="outlined"
-                              />
-                              <AllButton text="Continue" />
+                                <Typography
+                                  sx={{
+                                    fontSize: isSmallScreen ? '12px' : '16px',
+                                    fontFamily: 'Poppins',
+                                    color: '#000'
+                                  }}>
+                                  {cardNumber}
+                                </Typography>
+                              </Box>
                             </Box>
                           </Box>
-                        )}
-                      </Box>
-                    </Box>
+                        </AccordionSummary>
+                        <AccordionDetails sx={{}}>
+                          <Typography>
+                            {hover && (
+                              <Box>
+                                <FormControl>
+                                  <FormLabel
+                                    id="demo-radio-buttons-group-label"
+                                    sx={{
+                                      fontSize: '12px',
+                                      fontWeight: 500,
+                                      fontFamily: 'Poppins',
+                                      color: '#000'
+                                    }}>
+                                    Choose an option
+                                  </FormLabel>
+                                  <RadioGroup
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    defaultValue={option1}
+                                    name="radio-buttons-group">
+                                    <FormControlLabel
+                                      value="Pay full amount of rs.6304"
+                                      control={<Radio />}
+                                      label={
+                                        <Typography
+                                          sx={{
+                                            fontSize: '12px',
+                                            fontWeight: 300,
+                                            fontFamily: 'Poppins',
+                                            color: '#000'
+                                          }}>
+                                          {option1}
+                                        </Typography>
+                                      }
+                                    />
+                                    <FormControlLabel
+                                      value={option2}
+                                      control={<Radio />}
+                                      label={
+                                        <Typography
+                                          sx={{
+                                            fontSize: '12px',
+                                            fontWeight: 300,
+                                            fontFamily: 'Poppins',
+                                            color: '#000'
+                                          }}>
+                                          {option2}
+                                        </Typography>
+                                      }
+                                    />
+                                  </RadioGroup>
+                                </FormControl>
+                                <Box
+                                  sx={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    gap: 3,
+                                    my: 2
+                                  }}>
+                                  <TextField
+                                    sx={{ width: '85px' }}
+                                    id="outlined-basic"
+                                    size="small"
+                                    label={
+                                      <Typography
+                                        component="p"
+                                        sx={{
+                                          color: '#949494',
+                                          fontFamily: 'Poppins',
+                                          fontSize: '14px'
+                                        }}>
+                                        cvv
+                                      </Typography>
+                                    }
+                                    variant="outlined"
+                                  />
+                                  <AllButton text="Continue" />
+                                </Box>
+                              </Box>
+                            )}
+                          </Typography>
+                        </AccordionDetails>
+                      </Accordion>
+                      {/* Rest of the Accordions follow the same pattern */}
+                      {/* ... */}
+                    </div>
+
                     <Divider sx={{ width: '100%', height: '1px', background: '#E0E0E0' }} />
                   </>
                 )
