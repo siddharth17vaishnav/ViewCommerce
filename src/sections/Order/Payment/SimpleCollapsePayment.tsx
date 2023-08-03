@@ -128,7 +128,7 @@ const SimpleCollapsePayment = () => {
                             sx={{
                               display: 'flex',
                               alignItems: 'start',
-                              py: 3
+                              py: 1
                               //   px: 2
                             }}>
                             <FormControlLabel
