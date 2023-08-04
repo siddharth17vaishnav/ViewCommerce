@@ -104,7 +104,7 @@ const SimpleCollapsePayment = () => {
                 width: '100%'
               }}
               in={!checked || checked}
-              collapsedSize={numberOfArrayDisplayed * 90}>
+              collapsedSize={numberOfArrayDisplayed * 82}>
               {copiedArr.map((items, ind) => {
                 const { img, width, height, cardNumber, hover, option1, option2 } = items
 
@@ -239,8 +239,6 @@ const SimpleCollapsePayment = () => {
                           </Typography>
                         </AccordionDetails>
                       </Accordion>
-                      {/* Rest of the Accordions follow the same pattern */}
-                      {/* ... */}
                     </div>
 
                     <Divider sx={{ width: '100%', height: '1px', background: '#E0E0E0' }} />
