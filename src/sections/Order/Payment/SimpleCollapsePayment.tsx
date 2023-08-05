@@ -50,6 +50,7 @@ const SimpleCollapsePayment = () => {
   const [copiedArr, setCopiedArr] = useState<paymentItem[]>([])
   const [numberOfArrayDisplayed, setNumberOfArrayDisplayed] = useState(4)
   const [expanded, setExpanded] = useState<string | false>(false)
+  const [previousId, setPreviousId] = useState<number>(0)
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
@@ -64,28 +65,30 @@ const SimpleCollapsePayment = () => {
     setNumberOfArrayDisplayed(prev => (prev === 4 ? savedCards.length : 4))
   }
 
-  //   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  //   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, panel: string) => {
   //     copiedArr[Number(e.currentTarget.id)].hover = true
-
-  //     setTog(!tog)
+  //     setExpanded(panel)
   //   }
 
   //   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-  //     // setIsHovered(false)
   //     copiedArr[Number(e.currentTarget.id)].hover = false
-  //     setTog(!tog)
+  //     setExpanded(false)
   //   }
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, panel: string) => {
-    copiedArr[Number(e.currentTarget.id)].hover = true
+  const handleChange = (
+    e: React.SyntheticEvent<Element, Event>,
+    checked: boolean,
+    id: number,
+    panel: string
+  ) => {
+    setPreviousId(id)
+    copiedArr[id].hover = true
     setExpanded(panel)
+    console.log(copiedArr[id].hover)
+    copiedArr[previousId].hover === true && id !== previousId
+      ? (copiedArr[previousId].hover = false)
+      : null
   }
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    copiedArr[Number(e.currentTarget.id)].hover = false
-    setExpanded(false)
-  }
-
   return (
     <>
       <Box sx={{}}>
@@ -118,13 +121,11 @@ const SimpleCollapsePayment = () => {
                           background: hover ? '#F0F0F0' : null
                         }}
                         expanded={expanded === `${img}-${ind}`}
-                        onMouseEnter={e => handleMouseEnter(e, `${img}-${ind}`)}
-                        onMouseLeave={handleMouseLeave}>
+                        // onMouseEnter={e => handleMouseEnter(e, `${img}-${ind}`)}
+                        // onMouseLeave={handleMouseLeave}
+                      >
                         <AccordionSummary aria-controls="panel1bh-content" id="panel1bh-header">
                           <Box
-                            // onMouseEnter={handleMouseEnter}
-                            // onMouseLeave={handleMouseLeave}
-
                             sx={{
                               display: 'flex',
                               alignItems: 'start',
@@ -132,10 +133,12 @@ const SimpleCollapsePayment = () => {
                               //   px: 2
                             }}>
                             <FormControlLabel
+                              onChange={e => handleChange(e, checked, ind, `${img}-${ind}`)}
                               value={`details-${ind}`}
                               control={<Radio />}
                               label=""
                             />
+
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mt: 1 }}>
                               <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
                                 <CardMedia
