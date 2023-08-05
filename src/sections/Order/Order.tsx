@@ -146,7 +146,7 @@ const Order = () => {
                   <Paper
                     elevation={0}
                     sx={{
-                      border: 'solid 1.24px #DEE2E7',
+                      border: isSmallScreen ? null : 'solid 1.24px #DEE2E7',
                       position: 'relative'
                     }}>
                     <CardMedia
@@ -157,6 +157,7 @@ const Order = () => {
                         // width: '100%',
                         height: '426px',
                         p: 2,
+                        px: isSmallScreen ? 0 : null,
                         borderRadius: '5px'
                       }}
                     />
@@ -351,14 +352,19 @@ const Order = () => {
                       }}>
                       RS 1450
                     </Typography>
-                    <Box sx={{ display: isSmallScreen ? 'flex' : 'none', gap: 2, my: 2 }}>
-                      <Link to="">
+                    <Box
+                      sx={{
+                        display: isSmallScreen ? 'flex' : 'none',
+                        gap: 2,
+                        my: 2
+                      }}>
+                      <Link to="" style={{ width: '100%' }}>
                         <AllButton text="Buy-now" />
                       </Link>
                       <Paper
                         sx={{
                           width: '48px',
-                          height: '48px',
+                          // height: '48px',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center'

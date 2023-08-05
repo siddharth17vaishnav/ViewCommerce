@@ -135,7 +135,7 @@ const MyCart = () => {
     setToggle(!toggle)
   }
   useEffect(() => {
-    const endDate = new Date('2023-08-09T00:00:00').getTime()
+    const endDate = new Date('2023-08-31T00:00:00').getTime()
 
     const interval = setInterval(() => {
       const now = new Date().getTime()
