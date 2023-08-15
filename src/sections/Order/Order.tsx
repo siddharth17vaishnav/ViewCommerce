@@ -358,7 +358,7 @@ const Order = () => {
                         gap: 2,
                         my: 2
                       }}>
-                      <Link to="" style={{ width: '100%' }}>
+                      <Link to="/AddPayment" style={{ width: '100%' }}>
                         <AllButton text="Buy-now" />
                       </Link>
                       <Paper
@@ -627,7 +627,7 @@ const Order = () => {
                         </Typography>
                       </Box>
                       <Box sx={{ display: isSmallScreen ? 'none' : null }}>
-                        <Link to="">
+                        <Link to="/AddPayment">
                           <AllButton text="Buy-now" />
                         </Link>
                         <Link to="">

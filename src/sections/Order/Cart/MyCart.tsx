@@ -32,25 +32,22 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Stack from '@mui/material/Stack'
 import FormControl from '@mui/material/FormControl'
-import TextField from '@mui/material/TextField'
+
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Cards from '../../../Components/Cards/Cards'
-import img12 from '../../../assets/images/Order&Cart/unsplash2.png'
+
 import { mycards, images } from '../../../Components/Cards/CardDetails'
 import AllButton from '../../../Components/Buttons/AllButton'
-import { CartItem } from '../../../Components/Types'
+
 import Checkout from '../Checkout'
+
+import { useAppDispatch, useAppSelector } from '../../../Redux/Store/hooks'
 import {
-  UserArray,
-  UserDiscount,
-  UserHandleChange,
-  UserHandleDelete,
-  UserHandleDeleteAll,
-  UserSubTotal,
-  UserTax,
-  UserTotalPayable
-} from '../../../App'
+  AddOrReduceCartItems,
+  RemoveFromCartArr,
+  RemoveAllCartArr
+} from '../../../Redux/Checkout/CheckoutSlice'
 
 const theme = createTheme({
   breakpoints: {
@@ -68,11 +65,6 @@ const theme = createTheme({
 })
 
 const MyCart = () => {
-  // const [toggle, setToggle] = useState(false)
-  // const [cartArr, setCartArr] = useState<CartItem[]>([])
-  // const [subTotal, setSubTotal] = useState(0)
-  // const [discount, setDiscount] = useState(0)
-  // const [tax, setTax] = useState(0)
   const [toggle, setToggle] = useState(false)
   const [days, setDays] = useState(0)
   const [hours, setHours] = useState(0)
@@ -83,48 +75,26 @@ const MyCart = () => {
   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
   const isLargeScreen = useMediaQuery(theme.breakpoints.down('lg'))
 
-  const cartArr = useContext(UserArray)
-  const handleChange = useContext(UserHandleChange)
-  const handleDelete = useContext(UserHandleDelete)
-  const handleDeleteAll = useContext(UserHandleDeleteAll)
+  const cartArrToDisplay = useAppSelector(state => state.checkout.array)
 
-  // let totalPayable = subTotal + tax - discount
-  // useEffect(() => {
-  //   setCartArr(OrderAndCart.slice())
-  //   totalDiscount()
-  //   totalTax()
-  // }, [])
-  // useEffect(() => {
-  //   sumSubTotal()
-  // }, [cartArr])
+  const dispatch = useAppDispatch()
 
-  // const sumSubTotal = () => {
-  //   const sum = cartArr
-  //     .map((item, ind) => item.amount)
-  //     .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-  //   setSubTotal(sum)
-  // }
-  // const totalDiscount = () => {
-  //   setDiscount(260)
-  // }
-  // const totalTax = () => {
-  //   setTax(14)
-  // }
+  const handleChange = (event: SelectChangeEvent<number>, id: number) => {
+    const value = Number(event.target.value)
+    const payload = { id, value }
 
-  // console.log(cartArr)
+    dispatch(AddOrReduceCartItems(payload))
+  }
 
-  // console.log('abel')
-  // const handleChange = (event: SelectChangeEvent<number>, id: number) => {
-  //   const searchCart = cartArr.find(item => item.id === id)
-  //   searchCart ? (searchCart.quantity = Number(event.target.value)) : null
-  //   searchCart ? (searchCart.amount = searchCart.totalAmount * Number(event.target.value)) : null
+  const handleDelete = (id: number) => {
+    dispatch(RemoveFromCartArr(id))
+  }
+  const handleDeleteAll = () => {
+    dispatch(RemoveAllCartArr())
+  }
 
-  //   sumSubTotal()
-  //   totalDiscount()
-  //   totalTax()
-  // }
   const handleFavourite = (id: number) => {
-    let searchCart = cartArr.find((item, ind) => item.id == id)
+    let searchCart = cartArrToDisplay.find((item, ind) => item.id == id)
     if (searchCart) {
       if (searchCart.favorite === false) {
         searchCart.favorite = true
@@ -180,9 +150,9 @@ const MyCart = () => {
               <Typography
                 component="h3"
                 sx={{ fontSize: '24px', fontWeight: 600, color: '#1C1C1C', mb: 2 }}>
-                My cart ({cartArr.length})
+                My cart ({cartArrToDisplay.length})
               </Typography>
-              {cartArr.map((items, ind) => {
+              {cartArrToDisplay.map((items, ind) => {
                 const { id, img, name, desc, seller, amount, quantity, totalAmount, favorite } =
                   items
                 return (
@@ -362,7 +332,7 @@ const MyCart = () => {
                 <Stack direction="row" spacing={2}>
                   <AllButton text="Back to shop" startIcon={<ArrowBackIcon />} />
                 </Stack>
-                {cartArr.length !== 0 ? (
+                {cartArrToDisplay.length !== 0 ? (
                   <AllButton onClick={handleDeleteAll} text="Remove all" />
                 ) : null}
               </Box>

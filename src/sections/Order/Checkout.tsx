@@ -13,8 +13,8 @@ import FormControl from '@mui/material/FormControl'
 import TextField from '@mui/material/TextField'
 import AllButton from '../../Components/Buttons/AllButton'
 import { paymentMethod } from './Cart/CartAndOrder/OrderAndCartArray'
-import { UserDiscount, UserSubTotal, UserTax, UserTotalPayable } from '../../App'
 import { useLocation } from 'react-router-dom'
+import { useAppSelector } from '../../Redux/Store/hooks'
 
 const theme = createTheme({
   breakpoints: {
@@ -33,17 +33,17 @@ const theme = createTheme({
 
 const Checkout = () => {
   const [inputValue, setInputValue] = useState('')
+  const [discount, setDiscount] = useState(260)
+  const [tax, setTax] = useState(14)
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
   const isLargeScreen = useMediaQuery(theme.breakpoints.down('lg'))
 
   const location = useLocation()
+  const subTotal = useAppSelector(state => state.checkout.subTotal)
 
-  const totalPayable = useContext(UserTotalPayable)
-  const subTotal = useContext(UserSubTotal)
-  const tax = useContext(UserTax)
-  const discount = useContext(UserDiscount)
+  let totalPayable = subTotal + tax - discount
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

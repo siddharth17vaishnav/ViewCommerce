@@ -11,9 +11,6 @@ export const menuItems: MenuItem[] = [
     submenu: [
       {
         title: 'Order'
-      },
-      {
-        title: 'AddPayment'
       }
     ]
   },
