@@ -25,7 +25,7 @@ const theme = createTheme({
     },
     text: {
       primary: ThemeColor.BLACK,
-      secondary: ThemeColor.ORANGE
+      secondary: ThemeColor.DARK_GREY,
     },
     divider: 'rgba(0,0,0,0.1)',
 
@@ -34,6 +34,7 @@ const theme = createTheme({
     },
     error: {
       main: red.A700
+      
     }
   },
   breakpoints: {
@@ -76,6 +77,7 @@ const theme = createTheme({
       fontSize: '0.9rem'
     }
   }
+  
 })
 
 export default theme
